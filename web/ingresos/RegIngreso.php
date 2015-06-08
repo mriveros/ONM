@@ -60,20 +60,21 @@ $catego=  $_SESSION["categoria_usuario"];
                 var cliente=document.getElementById("idCliente").value;
                 var fechaentrega=document.getElementById("idEntrega").value;
                 var obs=document.getElementById("idObs").value;
-                if(proforma=="" || fechaentrega=="" || obs=="")
+                var cantidad=document.getElementById("idCantidad").value;
+                if(proforma=="" || fechaentrega=="" || obs=="" || cantidad=="")
                 {
                     alert('Debe rellenar todos los campos');
                      location.reload(true);
                 }else{
                     $.ajax({type: "GET",url:"../class/ClsIngresos.php",data:"proforma="+proforma+"&cliente="+cliente+"&fechaentrega="+fechaentrega+
-                    "&obs="+obs,success:function(msg){
+                    "&obs="+obs"&cantidad="+cantidad,success:function(msg){
                     $("#").fadeIn("slow",function(){
                     $("#").html(msg);
                     })}})
                 }
             }
             function Cancelar(){
-                window.location="http://localhost/app/ONMWORK-CONTROL/web/menu.php";
+                window.location="http://localhost/app/ONM/web/menu.php";
             }
 	</script>
         
@@ -121,6 +122,10 @@ $catego=  $_SESSION["categoria_usuario"];
                                             </select>
                                             </div>
 					</div>
+                                        <div class="form-group">
+                                            <label>Cantidad Intrumentos</label>
+                                            <input type="number" name="txtCantidadA" id="idCantidad" class="form-control" required>
+                                        </div>
                                         <div class="form-group">
                                             <label>Fecha Entrega</label>
                                             <input type="date" name="txtEntregaA" id="idEntrega" class="form-control" required>

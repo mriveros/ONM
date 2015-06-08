@@ -14,8 +14,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>ONM- Instrumentos</title>
+    <title>ONM-Listado Ingresos</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -86,7 +85,7 @@ $catego=  $_SESSION["categoria_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Instrumentos - <small>ONM WORKFLOW</small></h1>
+                      <h1 class="page-header">Listado Ingresos - <small>ONM WORKFLOW</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -104,7 +103,8 @@ $catego=  $_SESSION["categoria_usuario"];
                                         <tr class="success">
                                             <th>Proforma</th>
                                             <th>Cliente</th>
-                                             <th>Observacion</th>
+                                            <th>Observacion</th>
+                                            <th>Cantidad</th>
                                             <th>Fecha Recepcion</th>
                                             <th>Fecha Entrega</th>
                                             <th>Estado</th>
@@ -113,19 +113,21 @@ $catego=  $_SESSION["categoria_usuario"];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select  ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,ins.fecha,ins.estado "
-                            . "from instrumentos ins, laboratorios lab "
-                            . "where ins.lab_cod=lab.lab_cod ;";
+                    $query = "select ing.ing_proforma,ing.cli_cod,cli.cli_nom || ' '|| cli.cli_ape as nombres,"
+                            . "ing.fecha_recepcion,ing.fecha_entrega,ing.estado,ing.situacion,ing.ing_obs,ing.ing_cant_total  "
+                            . "from ingreso ing, clientes cli where cli.cli_cod=ing.cli_cod "
+                            . "and ing.estado='t'";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
                         $estado=$row1["estado"];
                         if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
-                        echo "<tr><td>".$row1["ins_cod"]."</td>";
-                        echo "<td>".$row1["ins_nom"]."</td>";
-                        echo "<td>".$row1["ins_des"]."</td>";
-                        echo "<td>".$row1["lab_nom"]."</td>";
-                        echo "<td><b>".$row1["fecha"]."</b></td>";
+                        echo "<tr><td>".$row1["ing_proforma"]."</td>";
+                        echo "<td>".$row1["nombres"]."</td>";
+                        echo "<td>".$row1["ing_obs"]."</td>";
+                        echo "<td>".$row1["ing_cant_total"]."</td>";
+                        echo "<td><b>".$row1["fecha_recepcion"]."</b></td>";
+                        echo "<td><b>".$row1["fecha_entrega"]."</b></td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
                         <a onclick='tuhermana(<?php echo $row1["ins_cod"];?>)' class="btn btn-primary" data-toggle="modal" data-target="#modalagr" role="button">Ver Detalles</a>

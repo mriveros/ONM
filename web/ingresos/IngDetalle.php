@@ -62,7 +62,7 @@ $catego=  $_SESSION["categoria_usuario"];
 			});
 		};
 		function Redirigir(){
-			window.location="http://localhost/app/ONMWORK-CONTROL/web/menu.php";
+			window.location="http://localhost/app/ONM/web/menu.php";
 		};
 	</script>
 </head>

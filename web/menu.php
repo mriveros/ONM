@@ -149,7 +149,7 @@
                             <a href="#"><i class="fa fa-user"></i> USUARIOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/usuarios/ABMusuario.php">Registros de Usuarios</a>
+                                    <a href="http://localhost/app/ONM/web/usuarios/ABMusuario.php">Registros de Usuarios</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -158,7 +158,7 @@
                             <a href="#"><i class="fa  fa-users"></i> CLIENTES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/clientes/ABMcliente.php"> Registros de Clientes</a>
+                                    <a href="http://localhost/app/ONM/web/clientes/ABMcliente.php"> Registros de Clientes</a>
                                 </li>
                                 <li>
                                 </li>
@@ -169,7 +169,7 @@
                             <a href="#"><i class="fa fa-wrench "></i> INSTRUMENTOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/instrumentos/ABMinstrumento.php"> Registro de Instrumentos</a>
+                                    <a href="http://localhost/app/ONM/web/instrumentos/ABMinstrumento.php"> Registro de Instrumentos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -178,7 +178,7 @@
                             <a href="#"><i class="fa  fa-flask "></i> LABORATORIOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/laboratorios/ABMlaboratorio.php">Registros de Laboratorios</a>
+                                    <a href="http://localhost/app/ONM/web/laboratorios/ABMlaboratorio.php">Registros de Laboratorios</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -187,8 +187,8 @@
                             <a href="#"><i class="fa   fa-mail-forward"></i> INGRESO<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/ingresos/RegIngreso.php">Registrar Ingreso</a>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/ingresos/ListadoIngresos.php">Listado Ingresos</a>
+                                    <a href="http://localhost/app/ONM/web/ingresos/RegIngreso.php">Registrar Ingreso</a>
+                                    <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Listado Ingresos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -198,7 +198,7 @@
                             <ul class="nav nav-second-level">
                                
                                 <li>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/entregas/entrega.php">Registros de Entregas</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/entrega.php">Registros de Entregas</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -235,7 +235,7 @@
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA CLIENTES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                   <a href="http://localhost/app/ONMWORK-CONTROL/web/ingresos/ListadoIngresos.php">Avance de Trabajos</a>
+                                   <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Avance de Trabajos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -244,8 +244,8 @@
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA TECNICA<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/ingresos/ListadoIngresos.php">Trabajos Recibidos</a>
-                                    <a href="http://localhost/app/ONMWORK-CONTROL/web/ingresos/ListadoIngresos.php">Trabajos Terminados</a>
+                                    <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Trabajos Recibidos</a>
+                                    <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Trabajos Terminados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -28,7 +28,7 @@
             if(func_existeDato($nombreA, 'laboratorios', 'lab_nom')==true){
                 echo '<script type="text/javascript">
 		alert("El Laboratorio ya existe. Intente ingresar otro Laboratorio");
-                window.location="http://localhost/app/ONMWORK-CONTROL/web/laboratorios/ABMlaboratorio.php";
+                window.location="http://localhost/app/ONM/web/laboratorios/ABMlaboratorio.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -37,7 +37,7 @@
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://localhost/app/ONMWORK-CONTROL/web/laboratorios/ABMlaboratorio.php");
+                header("Refresh:0; url=http://localhost/app/ONM/web/laboratorios/ABMlaboratorio.php");
                 }
             }
         //si es Modificar    
@@ -45,10 +45,10 @@
             
             pg_query("update laboratorios set lab_nom='$nombreM',lab_des= '$descripcionM',estado='$estadoM' WHERE lab_cod=$codigoModif");
             $query = '';
-            header("Refresh:0; url=http://localhost/app/ONMWORK-CONTROL/web/laboratorios/ABMlaboratorio.php");
+            header("Refresh:0; url=http://localhost/app/ONM/web/laboratorios/ABMlaboratorio.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update laboratorios set estado='f' WHERE lab_cod=$codigoElim");
-            header("Refresh:0; url=http://localhost/app/ONMWORK-CONTROL/web/laboratorios/ABMlaboratorio.php");
+            header("Refresh:0; url=http://localhost/app/ONM/web/laboratorios/ABMlaboratorio.php");
 	}
