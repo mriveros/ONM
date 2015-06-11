@@ -15,7 +15,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ONM- Ingresos</title>
+    <title>ONM- Instrumentos</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -60,14 +60,13 @@ $catego=  $_SESSION["categoria_usuario"];
                 var cliente=document.getElementById("idCliente").value;
                 var fechaentrega=document.getElementById("idEntrega").value;
                 var obs=document.getElementById("idObs").value;
-                var cantidad=document.getElementById("idCantidad").value;
-                if(proforma=="" || fechaentrega=="" || obs=="" || cantidad=="")
+                if(proforma=="" || fechaentrega=="" || obs=="")
                 {
                     alert('Debe rellenar todos los campos');
                      location.reload(true);
                 }else{
                     $.ajax({type: "GET",url:"../class/ClsIngresos.php",data:"proforma="+proforma+"&cliente="+cliente+"&fechaentrega="+fechaentrega+
-                    "&obs="+obs"&cantidad="+cantidad,success:function(msg){
+                    "&obs="+obs,success:function(msg){
                     $("#").fadeIn("slow",function(){
                     $("#").html(msg);
                     })}})
@@ -123,13 +122,10 @@ $catego=  $_SESSION["categoria_usuario"];
                                             </div>
 					</div>
                                         <div class="form-group">
-                                            <label>Cantidad Intrumentos</label>
-                                            <input type="number" name="txtCantidadA" id="idCantidad" class="form-control" required>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Fecha Entrega</label>
                                             <input type="date" name="txtEntregaA" id="idEntrega" class="form-control" required>
                                         </div>
+                                       
                                         <div class="form-group">
                                             <label>Observacion</label>
                                             <textarea name="txtObsA" id="idObs" class="form-control" rows="3" required></textarea>

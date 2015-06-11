@@ -232,6 +232,28 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="#"><i class="fa  fa-cogs"></i>Tecnicos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="http://localhost/app/ONM/web/tecnicos/ABMtecnico.php"> Registros de Tecnicos</a>
+                                </li>
+                                <li>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa  fa-lightbulb-o"></i>Tecnicos- Laboratorios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="http://localhost/app/ONM/web/tecnicos_laboratorios/ABMtecniLab.php"> Registros de Tecnicos en Laboratorios</a>
+                                </li>
+                                <li>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA CLIENTES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -244,8 +266,10 @@
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA TECNICA<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Trabajos Recibidos</a>
-                                    <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Trabajos Terminados</a>
+                                    <a href="http://localhost/app/ONM/web/login_tecnicos/acceso.html">Login</a>
+                                    <a href="http://localhost/app/ONM/web/area_tecnica/TrabajosRecibidos.php">Trabajos Recibidos</a>
+                                    <a href="http://localhost/app/ONM/web/area_tecnica/EnProgreso.php">Trabajos En Progreso</a>
+                                    <a href="http://localhost/app/ONM/web/area_tecnica/Terminados.php">Trabajos Terminados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -15,7 +15,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ONM- Laboratorios</title>
+    <title>ONM- Tecnicos</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -53,20 +53,26 @@ $catego=  $_SESSION["categoria_usuario"];
     });
     </script>
 	<script type="text/javascript">
-		function modificar(codlaboratorio){
+		function modificar(codcliente){
 			$('tr').click(function() {
 			indi = $(this).index();
                         //var codusuario=document.getElementById("dataTables-example").rows[indi+1].cells[0].innerText;
 			var nombre=document.getElementById("dataTables-example").rows[indi+1].cells[1].innerText;
-			var descripcion=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
-			//var estado=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
-                        document.getElementById("txtCodigo").value = codlaboratorio;
+			var apellido=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
+                        var ci=document.getElementById("dataTables-example").rows[indi+1].cells[3].innerText;
+			var mail=document.getElementById("dataTables-example").rows[indi+1].cells[4].innerText;
+                        var nro=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
+                        //var estado=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
+                        document.getElementById("txtCodigo").value = codcliente;
                         document.getElementById("txtNombre").value = nombre;
-			document.getElementById("txtDescripcion").value = descripcion;
+			document.getElementById("txtApellido").value = apellido;
+			document.getElementById("txtCi").value = ci;
+                        document.getElementById("txtMail").value = mail;
+                       
 			});
 		};
-		function eliminar(codlaboratorio){
-			document.getElementById("txtCodigoE").value = codlaboratorio;
+		function eliminar(codcliente){
+			document.getElementById("txtCodigoE").value = codcliente;
 		};
 	</script>
 </head>
@@ -84,7 +90,7 @@ $catego=  $_SESSION["categoria_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Laboratorios - <small>ONM WORKFLOW</small></h1>
+                      <h1 class="page-header">Tecnicos - <small>ONM WORKFLOW</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -92,7 +98,7 @@ $catego=  $_SESSION["categoria_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Listado de Laboratorios
+                            Listado de Tecnicos
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -101,30 +107,32 @@ $catego=  $_SESSION["categoria_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
-                                            <th>Laboratorio</th>
-                                            <th>Descripcion</th>
-                                            <th>Fecha</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>CI</th>
+                                            <th>E-mail</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select * from laboratorios;";
+                    $query = "select * from tecnicos;";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
                         $estado=$row1["estado"];
                         if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
-                        echo "<tr><td>".$row1["lab_cod"]."</td>";
-                        echo "<td>".$row1["lab_nom"]."</td>";
-                        echo "<td>".$row1["lab_des"]."</td>";
-                        echo "<td><b>".$row1["fecha"]."</b></td>";
+                        echo "<tr><td>".$row1["tec_cod"]."</td>";
+                        echo "<td>".$row1["tec_nom"]."</td>";
+                        echo "<td>".$row1["tec_ape"]."</td>";
+                        echo "<td><b>".$row1["tec_ci"]."</b></td>";
+                        echo "<td>".$row1["tec_mail"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
-                        <a onclick='tuhermana(<?php echo $row1["lab_cod"];?>)' class="btn btn-default btn-xs active" data-toggle="modal" data-target="#modalagr" role="button">Nuevo</a>
-                        <a onclick='modificar(<?php echo $row1["lab_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalmod" role="button">Modificar</a>
-                        <a onclick='eliminar(<?php echo $row1["lab_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
+                        <a onclick='tuhermana(<?php echo $row1["tec_cod"];?>)' class="btn btn-default btn-xs active" data-toggle="modal" data-target="#modalagr" role="button">Nuevo</a>
+                        <a onclick='modificar(<?php echo $row1["tec_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalmod" role="button">Modificar</a>
+                        <a onclick='eliminar(<?php echo $row1["tec_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
                         <?php
                         echo "</td></tr>";
                     }
@@ -159,26 +167,38 @@ $catego=  $_SESSION["categoria_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsLaboratorios.php" method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsTecnicos.php" method="post" role="form">
 						
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nombre Laboratorio</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Nombre</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNombreA" class="form-control" id="txtNombreA" placeholder="ingrese nombre de laboratorio" required />
+                                            <input type="text" name="txtNombreA" class="form-control" id="txtNombreA" placeholder="ingrese nombre" required />
                                             </div>
 					</div>
 					<div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Apellido</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcionA" class="form-control" id="txtDescripcionA" placeholder="ingrese descripcion" required />
+                                            <input type="text" name="txtApellidoA" class="form-control" id="txtApellidoA" placeholder="ingrese apellido" required />
+                                            </div>
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">CI</label>
+                                            <div class="col-sm-10">
+                                            <input type="text" name="txtCiA" class="form-control" id="txtCiA" placeholder="ingrese CI" required />
+                                            </div>
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">E-Mail</label>
+                                            <div class="col-sm-10">
+                                            <input type="mail" name="txtMailA" class="form-control" id="txtMailA" placeholder="ingrese e-mail" required />
                                             </div>
 					</div>
 					<div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input03">Estado</label>
                                             <div class="col-sm-10">
                                             <div class="radio">
-                                            <label><input type="radio" name="txtEstadoA" value="1" checked /> Activo</label>
-                                            <label><input type="radio" name="txtEstadoA" value="0" /> Inactivo</label>
+                                            <label><input type="radio" name="opcionA" value="1" checked /> Activo</label>
+                                            <label><input type="radio" name="opcionA" value="0" /> Inactivo</label>
                                             </div>
                                             </div>
 					</div>		
@@ -205,30 +225,43 @@ $catego=  $_SESSION["categoria_usuario"];
 				</div>
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="modificarform" action="../class/ClsLaboratorios.php"  method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="modificarform" action="../class/ClsTecnicos.php"  method="post" role="form">
                                         <div class="form-group">
                                             <div class="col-sm-10">
                                             <input type="hidden" name="txtCodigo" class="form-control" id="txtCodigo"  />
                                             </div>
 					</div>
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nombre Laboratorio</label>
+                                            <input type="numeric" name="codigo1" class="hide" id="input000" />
+                                            <label  class="col-sm-2 control-label" for="input01">Nombre</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNombre" class="form-control" id="txtNombre" placeholder="ingrese nombre de laboratorio" required />
+                                            <input type="text" name="txtNombre" class="form-control" id="txtNombre"  required />
                                             </div>
 					</div>
 					<div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Apellido</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcion" class="form-control" id="txtDescripcion" placeholder="ingrese una descripcion" required />
+                                            <input type="text" name="txtApellido" class="form-control" id="txtApellido" placeholder="ingrese apellido" required />
+                                            </div>
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Ruc</label>
+                                            <div class="col-sm-10">
+                                            <input type="text" name="txtCi" class="form-control" id="txtCi" placeholder="ingrese nombre de usuario" required />
+                                            </div>
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">E-mail</label>
+                                            <div class="col-sm-10">
+                                            <input type="mail" name="txtMail" class="form-control" id="txtMail" placeholder="ingrese una contraseña" required />
                                             </div>
 					</div>
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input03">Estado</label>
                                             <div class="col-sm-10">
                                             <div class="radio">
-                                            <label><input type="radio" name="txtEstado" value="1" checked /> Activo</label>
-                                            <label><input type="radio" name="txtEstado" value="0" /> Inactivo</label>
+                                            <label><input type="radio" name="txtOpcion" value="1" checked /> Activo</label>
+                                            <label><input type="radio" name="txtOpcion" value="0" /> Inactivo</label>
                                             </div>
                                             </div>
 					</div>		
@@ -256,7 +289,7 @@ $catego=  $_SESSION["categoria_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form class="form-horizontal" name="borrarform" action="../class/ClsLaboratorios.php" onsubmit="return submitForm();" method="post" role="form">
+                                    <form class="form-horizontal" name="borrarform" action="../class/ClsTecnicos.php" onsubmit="return submitForm();" method="post" role="form">
 						<div class="form-group">
 							<input type="numeric" name="txtCodigoE" class="hide" id="txtCodigoE" />
 							<div class="alert alert-danger alert-dismissable col-sm-10 col-sm-offset-1">

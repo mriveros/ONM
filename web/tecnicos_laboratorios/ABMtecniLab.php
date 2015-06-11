@@ -15,7 +15,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ONM- Laboratorios</title>
+    <title>ONM- Instrumentos</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -53,20 +53,20 @@ $catego=  $_SESSION["categoria_usuario"];
     });
     </script>
 	<script type="text/javascript">
-		function modificar(codlaboratorio){
+		function modificar(codteclab){
 			$('tr').click(function() {
 			indi = $(this).index();
                         //var codusuario=document.getElementById("dataTables-example").rows[indi+1].cells[0].innerText;
-			var nombre=document.getElementById("dataTables-example").rows[indi+1].cells[1].innerText;
-			var descripcion=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
+			var codtecnico=document.getElementById("dataTables-example").rows[indi+1].cells[1].innerText;
+                        var laboratorio=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
 			//var estado=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
-                        document.getElementById("txtCodigo").value = codlaboratorio;
-                        document.getElementById("txtNombre").value = nombre;
-			document.getElementById("txtDescripcion").value = descripcion;
+                        document.getElementById("txtCodigo").value = codteclab;
+                        document.getElementById("txtTecnico").value = codtecnico;
+                        document.getElementById("txtLaboratorio").value = laboratorio;
 			});
 		};
-		function eliminar(codlaboratorio){
-			document.getElementById("txtCodigoE").value = codlaboratorio;
+		function eliminar(codteclab){
+			document.getElementById("txtCodigoE").value = codteclab;
 		};
 	</script>
 </head>
@@ -84,7 +84,7 @@ $catego=  $_SESSION["categoria_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Laboratorios - <small>ONM WORKFLOW</small></h1>
+                      <h1 class="page-header">Tecnicos/Laboratorios - <small>ONM WORKFLOW</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -92,7 +92,7 @@ $catego=  $_SESSION["categoria_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Listado de Laboratorios
+                            Listado de Tecnicos en Laboratorios
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -101,8 +101,8 @@ $catego=  $_SESSION["categoria_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
+                                            <th>Tecnico</th>
                                             <th>Laboratorio</th>
-                                            <th>Descripcion</th>
                                             <th>Fecha</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>
@@ -110,21 +110,23 @@ $catego=  $_SESSION["categoria_usuario"];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select * from laboratorios;";
+                    $query = "select teclab.teclab_cod,tec.tec_nom ||' '||tec.tec_ape as nombres,lab.lab_nom,teclab.fecha,teclab.estado 
+                    from tecnicos tec, laboratorios lab, tecnicos_laboratorios teclab
+                    where tec.tec_cod=teclab.tec_cod and lab.lab_cod=teclab.lab_cod  ;";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
                         $estado=$row1["estado"];
                         if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
-                        echo "<tr><td>".$row1["lab_cod"]."</td>";
+                        echo "<tr><td>".$row1["teclab_cod"]."</td>";
+                        echo "<td>".$row1["nombres"]."</td>";
                         echo "<td>".$row1["lab_nom"]."</td>";
-                        echo "<td>".$row1["lab_des"]."</td>";
                         echo "<td><b>".$row1["fecha"]."</b></td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
-                        <a onclick='tuhermana(<?php echo $row1["lab_cod"];?>)' class="btn btn-default btn-xs active" data-toggle="modal" data-target="#modalagr" role="button">Nuevo</a>
-                        <a onclick='modificar(<?php echo $row1["lab_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalmod" role="button">Modificar</a>
-                        <a onclick='eliminar(<?php echo $row1["lab_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
+                        <a onclick='tuhermana(<?php echo $row1["teclab_cod"];?>)' class="btn btn-default btn-xs active" data-toggle="modal" data-target="#modalagr" role="button">Nuevo</a>
+                        <a onclick='modificar(<?php echo $row1["teclab_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalmod" role="button">Modificar</a>
+                        <a onclick='eliminar(<?php echo $row1["teclab_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
                         <?php
                         echo "</td></tr>";
                     }
@@ -159,18 +161,41 @@ $catego=  $_SESSION["categoria_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsLaboratorios.php" method="post" role="form">
-						
-                                        <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nombre Laboratorio</label>
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsTecnicosLaboratorios.php" method="post" role="form">
+					<div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Tecnico</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNombreA" class="form-control" id="txtNombreA" placeholder="ingrese nombre de laboratorio" required />
+                                           <select name="txtTecnicoA" class="form-control" id="idTecnicoA" required>
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "Select tec_cod,tec_nom||' '||tec_ape from tecnicos where estado='t' ";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
                                             </div>
 					</div>
-					<div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Laboratorio</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcionA" class="form-control" id="txtDescripcionA" placeholder="ingrese descripcion" required />
+                                           <select name="txtLaboratorioA" class="form-control" id="txtLaboratorioA" required>
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "Select lab_cod,lab_nom from laboratorios where estado='t' ";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
                                             </div>
 					</div>
 					<div class="form-group">
@@ -205,22 +230,46 @@ $catego=  $_SESSION["categoria_usuario"];
 				</div>
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="modificarform" action="../class/ClsLaboratorios.php"  method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="modificarform" action="../class/ClsTecnicosLaboratorios.php"  method="post" role="form">
                                         <div class="form-group">
                                             <div class="col-sm-10">
                                             <input type="hidden" name="txtCodigo" class="form-control" id="txtCodigo"  />
                                             </div>
 					</div>
-                                        <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nombre Laboratorio</label>
+					<div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Tecnico</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNombre" class="form-control" id="txtNombre" placeholder="ingrese nombre de laboratorio" required />
+                                           <select name="txtTecnico" class="form-control" id="txtTecnico" required>
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "Select tec_cod,tec_nom||' '||tec_ape from tecnicos where estado='t' ";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
                                             </div>
 					</div>
-					<div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Laboratorio</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcion" class="form-control" id="txtDescripcion" placeholder="ingrese una descripcion" required />
+                                           <select name="txtLaboratorio" class="form-control" id="txtLaboratorio" required>
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "Select lab_cod,lab_nom from laboratorios where estado='t' ";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
                                             </div>
 					</div>
                                         <div class="form-group">
@@ -256,7 +305,7 @@ $catego=  $_SESSION["categoria_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form class="form-horizontal" name="borrarform" action="../class/ClsLaboratorios.php" onsubmit="return submitForm();" method="post" role="form">
+                                    <form class="form-horizontal" name="borrarform" action="../class/ClsTecnicosLaboratorios.php" onsubmit="return submitForm();" method="post" role="form">
 						<div class="form-group">
 							<input type="numeric" name="txtCodigoE" class="hide" id="txtCodigoE" />
 							<div class="alert alert-danger alert-dismissable col-sm-10 col-sm-offset-1">

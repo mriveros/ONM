@@ -1,8 +1,8 @@
 <?php
 session_start();
-if(!isset($_SESSION['codigo_usuario']))
+if(!isset($_SESSION["codigo_usuario"]))
 header("Location:http://localhost/app/PhpEventos/login/acceso.html");
-$catego=  $_SESSION["categoria_usuario"];
+$codtecnico=  $_SESSION["codigo_usuario"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,8 +52,11 @@ $catego=  $_SESSION["categoria_usuario"];
     });
     </script>
     <script type="text/javascript">
-		function asignarCodigo(codigo){
-                    document.getElementById('idCodigo').value=codigo;
+		function cambiarEstado(coddetalle){
+                    $.ajax({type: "GET",url:"../class/ClsAreaTecnicaRecibidos.php",data:"coddetalle="+coddetalle,success:function(msg){
+                            $("#").fadeIn("slow",function(){
+                            $("#").html(msg);
+                            })}})
 		};
 	</script>	
 </head>
@@ -71,7 +74,7 @@ $catego=  $_SESSION["categoria_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Listado Ingresos - <small>ONM WORKFLOW</small></h1>
+                      <h1 class="page-header">Listado Terminados - <small>ONM WORKFLOW</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -79,47 +82,41 @@ $catego=  $_SESSION["categoria_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Listado de Instrumentos
+                            Listado de Instrumentos Calibrados
                         </div>
                         <!-- /.panel-heading -->
-                        <form class="form-horizontal" action="ListadoDetalle.php"  method="post" role="form" >
+                        <form class="form-horizontal"   method="post" role="form" >
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                                <input  type="number" name="txtCodigo" id="idCodigo" required>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
-                                            <th>Proforma</th>
-                                            <th>Cliente</th>
-                                            <th>Observacion</th>
-                                            <th>Fecha Recepcion</th>
+                                            <th>Cantidad</th>
+                                            <th>Instrumento</th>
                                             <th>Fecha Entrega</th>
-                                            <th>Estado</th>
-                                            <th>Detalle</th>
+                                            <th>Situacion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ing.ing_cod,ing.ing_proforma,ing.cli_cod,cli.cli_nom || ' '|| cli.cli_ape as nombres,
-                            ing.fecha_recepcion,ing.fecha_entrega,ing.estado,ing.situacion,ing.ing_obs 
-                            from ingreso ing, clientes cli where cli.cli_cod=ing.cli_cod and ing.estado='t'";
+                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,ing.fecha_entrega,ingdet.situacion from tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, laboratorios lab, instrumentos ins
+                            where ins.lab_cod=lab.lab_cod 
+                            and  teclab.lab_cod=lab.lab_cod 
+                            and teclab.tec_cod=tec.tec_cod 
+                            and ing.ing_cod=ingdet.ing_cod
+                            and ingdet.ins_cod=ins.ins_cod
+                            and ingdet.situacion='TERMINADO'
+                            and tec.tec_cod=$codtecnico";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
-                        $estado=$row1["estado"];
-                        if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
-                        echo "<tr><td>".$row1["ing_cod"]."</td>";
-                        echo "<td>".$row1["ing_proforma"]."</td>";
-                        echo "<td>".$row1["nombres"]."</td>";
-                        echo "<td>".$row1["ing_obs"]."</td>";
-                        echo "<td><b>".$row1["fecha_recepcion"]."</b></td>";
-                        echo "<td><b>".$row1["fecha_entrega"]."</b></td>";
-                        echo "<td>".$estado."</td>";
-                        echo "<td>";?>
-                        <button onclick="asignarCodigo(<?php echo $row1["ing_cod"]; ?>)" type="submit" name="modificar" class="btn btn-primary">Ver Detalles</button>
-                        <?php
-                        echo "</td></tr>";
+                        echo "<tr><td>".$row1["ing_coddet"]."</td>";
+                        echo "<td>".$row1["ing_cant"]."</td>";
+                        echo "<td>".$row1["ins_nom"]."</td>";
+                        echo "<td>".$row1["fecha_entrega"]."</td>";
+                        echo "<td>".$row1["situacion"]."</td>";
+                        echo "</tr>";
                     }
                     pg_free_result($result);
                     ?>
