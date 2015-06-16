@@ -198,7 +198,9 @@
                             <ul class="nav nav-second-level">
                                
                                 <li>
-                                    <a href="http://localhost/app/ONM/web/entregas/entrega.php">Registros de Entregas</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/Terminados.php">Intrumentos Terminados</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/ListadoParcial.php">Realizar Entrega Parcial</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/Entregados.php">Intrumentos Entregados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -257,7 +259,9 @@
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA CLIENTES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                   <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Avance de Trabajos</a>
+                                   <a href="http://localhost/app/ONM/web/login_clientes/acceso.html">Login</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/EnProgreso.php">En Progreso</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/Terminados.php">Instrumentos Calibrados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
