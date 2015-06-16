@@ -36,7 +36,7 @@ $ci=$_REQUEST['ci'];
             $_SESSION["codigo_usuario"] = $row['tec_cod'];
             //$_SESSION["categoria_usuario"] = $row['usu_cat'];
             
-            header("Location:http://localhost/app/ONM/web/area_tecnica/TrabajosRecibidos.php");
+            header("Location:http://localhost/app/ONM/web/area_tecnica/menu_tecnicos.php");
 	} 
 	exit;
 ?>

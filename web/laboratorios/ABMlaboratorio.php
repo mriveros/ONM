@@ -103,7 +103,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                             <th>Codigo</th>
                                             <th>Laboratorio</th>
                                             <th>Descripcion</th>
-                                            <th>Fecha</th>
+                                           
                                             <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -119,7 +119,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         echo "<tr><td>".$row1["lab_cod"]."</td>";
                         echo "<td>".$row1["lab_nom"]."</td>";
                         echo "<td>".$row1["lab_des"]."</td>";
-                        echo "<td><b>".$row1["fecha"]."</b></td>";
+                       
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
                         <a onclick='tuhermana(<?php echo $row1["lab_cod"];?>)' class="btn btn-default btn-xs active" data-toggle="modal" data-target="#modalagr" role="button">Nuevo</a>

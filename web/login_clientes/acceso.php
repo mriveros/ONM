@@ -35,7 +35,7 @@ $ci=$_REQUEST['ci'];
             $_SESSION["nombre_usuario"] = $row['cli_nom'];
             $_SESSION["codigo_usuario"] = $row['cli_cod'];
             
-            header("Location:http://localhost/app/ONM/web/area_clientes/Terminados.php");
+            header("Location:http://localhost/app/ONM/web/area_clientes/menu_clientes.php");
 	} 
 	exit;
 ?>

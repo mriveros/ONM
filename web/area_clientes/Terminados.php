@@ -67,7 +67,7 @@ $codcliente=  $_SESSION["codigo_usuario"];
 
         <?php 
         include("../funciones.php");
-        include("../menu.php");
+        include("./menu_clientes.php");   
         conexionlocal();
         ?>
         <!-- Page Content -->
@@ -100,7 +100,7 @@ $codcliente=  $_SESSION["codigo_usuario"];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,cli.cli_nom||' '||cli.cli_ape as nombres,ingdet.ing_cant,ins.ins_nom,ing.fecha_entrega,ingdet.situacion 
+                    $query = "select ingdet.ing_coddet,cli.cli_nom||' '||cli.cli_ape as nombres,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,ingdet.situacion 
                     from ingreso ing, ingreso_detalle ingdet,  instrumentos ins, clientes cli
                     where ing.ing_cod=ingdet.ing_cod
                     and ingdet.ins_cod=ins.ins_cod

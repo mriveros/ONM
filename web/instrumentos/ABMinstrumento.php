@@ -113,7 +113,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select  ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,ins.fecha,ins.estado "
+                    $query = "select  ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,to_char(ins.fecha,'DD/MM/YYYY') as fecha,ins.estado "
                             . "from instrumentos ins, laboratorios lab "
                             . "where ins.lab_cod=lab.lab_cod ;";
                     $result = pg_query($query) or die ("Error al realizar la consulta");

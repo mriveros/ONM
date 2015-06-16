@@ -97,7 +97,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                         <?php
                                        
                                         if  (empty($_POST['txtCodigo'])){$codigo=0;}else{ $codigo = $_POST['txtCodigo'];}
-                                        $query = "select ingdet.ing_coddet,ingdet.ing_cant, ing.ing_cod, ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,ins.fecha,ins.estado 
+                                        $query = "select ingdet.ing_coddet,ingdet.ing_cant, ing.ing_cod, ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,to_char(ins.fecha,'DD/MM/YYYY') as fecha,ins.estado 
                                         from instrumentos ins, laboratorios lab,ingreso ing,ingreso_detalle ingdet 
                                         where ins.lab_cod=lab.lab_cod  and ing.ing_cod=ingdet.ing_cod
                                         and ingdet.ins_cod=ins.ins_cod and ing.ing_cod=$codigo and ingdet.situacion='TERMINADO'" ;

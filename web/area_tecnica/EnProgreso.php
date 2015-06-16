@@ -67,7 +67,7 @@ $codtecnico=  $_SESSION["codigo_usuario"];
 
         <?php 
         include("../funciones.php");
-        include("../menu.php");
+        include("./menu_tecnicos.php");
         conexionlocal();
         ?>
         <!-- Page Content -->
@@ -101,7 +101,9 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,ing.fecha_entrega,ingdet.situacion from tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, laboratorios lab, instrumentos ins
+                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,ingdet.situacion 
+                            from tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, 
+                            laboratorios lab, instrumentos ins
                             where ins.lab_cod=lab.lab_cod 
                             and  teclab.lab_cod=lab.lab_cod 
                             and teclab.tec_cod=tec.tec_cod 
