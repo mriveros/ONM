@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["codigo_usuario"]))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $codcliente=  $_SESSION["codigo_usuario"];
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $codcliente=  $_SESSION["codigo_usuario"];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>ONM-Listado Ingresos</title>
+    <title>ONM-Listado Progreso</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -74,7 +74,7 @@ $codcliente=  $_SESSION["codigo_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Listado Ingresos - <small>ONM WORKFLOW</small></h1>
+                      <h1 class="page-header">Listado En Progreso - <small>ONM WORKFLOW</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -91,12 +91,9 @@ $codcliente=  $_SESSION["codigo_usuario"];
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="success">
-                                            <th>Codigo</th>
-                                            <th>Cantidad</th>
                                             <th>Instrumento</th>
                                             <th>Fecha Entrega</th>
                                             <th>Situacion</th>
-                                            <th>Accion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -111,15 +108,10 @@ $codcliente=  $_SESSION["codigo_usuario"];
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
-                        echo "<tr><td>".$row1["ing_coddet"]."</td>";
-                        echo "<td>".$row1["ing_cant"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";
                         echo "<td>".$row1["situacion"]."</td>";
-                        echo "<td>";?>
-                        <button onclick="cambiarEstado(<?php echo $row1["ing_coddet"]; ?>)" type="submit" name="modificar" class="btn btn-primary">Enviar a Recepcion</button>
-                        <?php
-                        echo "</td></tr>";
+                        echo "</tr>";
                     }
                     pg_free_result($result);
                     ?>

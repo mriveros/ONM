@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["codigo_usuario"]))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $codcliente=  $_SESSION["codigo_usuario"];
 ?>
 <!DOCTYPE html>
@@ -91,8 +91,6 @@ $codcliente=  $_SESSION["codigo_usuario"];
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="success">
-                                            <th>Codigo</th>
-                                            <th>Cantidad</th>
                                             <th>Instrumento</th>
                                             <th>Fecha Entrega</th>
                                             <th>Situacion</th>
@@ -110,8 +108,6 @@ $codcliente=  $_SESSION["codigo_usuario"];
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
-                        echo "<tr><td>".$row1["ing_coddet"]."</td>";
-                        echo "<td>".$row1["ing_cant"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";
                         echo "<td>".$row1["situacion"]."</td>";

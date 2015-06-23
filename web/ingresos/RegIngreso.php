@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ONM- Instrumentos</title>
+    <title>ONM- Ingreso</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -92,7 +92,7 @@ $catego=  $_SESSION["categoria_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Instrumentos - <small>ONM WORKFLOW</small></h1>
+                      <h1 class="page-header">Ingreso - <small>ONM WORKFLOW</small></h1>
                 </div>	
             </div>
             <div class="panel-body">
@@ -100,8 +100,8 @@ $catego=  $_SESSION["categoria_usuario"];
                                 <div class="col-lg-6">
                                     <form role="form" name="ingresos" id="ingresos" onsubmit="Registrar()">
                                         <div class="form-group">
-                                            <label>Proforma</label>
-                                            <input type="number" name="txtProformaA" id="idProforma" class="form-control" placeholder="Ingrese numero de Proforma" required>
+                                            <label>Nro Control de Ingreso</label>
+                                            <input type="number" name="txtProformaA" id="idProforma" class="form-control" placeholder="Ingrese numero de Control de ingreso" required>
                                         </div>
                                        <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Cliente</label>
@@ -148,7 +148,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <div class="modal fade" id="modalprueba" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <embed wmode="transparent" src="IngDetalle.php" width="500" height="400" />
+            <embed wmode="transparent" src="IngDetalle.php" width="700" height="700" />
         </div>
     </div>
     </div>

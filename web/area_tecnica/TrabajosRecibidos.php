@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["codigo_usuario"]))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $codtecnico=  $_SESSION["codigo_usuario"];
 ?>
 <!DOCTYPE html>
@@ -53,12 +53,12 @@ $codtecnico=  $_SESSION["codigo_usuario"];
     </script>
     <script type="text/javascript">
 		function cambiarEstado(coddetalle){
-                   
-                    $.ajax({type: "GET",url:"../class/ClsAreaTecnicaRecibidos.php",data:"coddetalle="+coddetalle,success:function(msg){
+                    $.ajax({type: "GET",url:"../class/ClsAreaTecnicaRecibidos.php",data:"coddetalle="+coddetalle ,success:function(msg){
                             $("#").fadeIn("slow",function(){
                             $("#").html(msg);
                             })}})
 		};
+                
 	</script>	
 </head>
 
@@ -88,42 +88,41 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                         <!-- /.panel-heading -->
                         <form class="form-horizontal"  method="post" role="form" >
                         <div class="panel-body">
-                            <div class="dataTable_wrapper" onclick="javascript:location.reload()">
+                            <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
-                                            <th>Cantidad</th>
+                                            <th>Cliente</th>
                                             <th>Instrumento</th>
+                                            <th>Observacion</th>
                                             <th>Fecha Entrega</th>
                                             <th>Situacion</th>
-                                            <th>Accion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,ingdet.situacion 
-                            from tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, 
+                    $query = "select ingdet.ing_coddet,ingdet.ing_cant_term,ingdet.ing_obs,cli.cli_nom|| ' '||cli.cli_ape as nombres,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,ingdet.situacion 
+                            from tecnicos_laboratorios teclab,clientes cli,tecnicos tec,ingreso ing, ingreso_detalle ingdet, 
                             laboratorios lab, instrumentos ins
                             where ins.lab_cod=lab.lab_cod 
                             and  teclab.lab_cod=lab.lab_cod 
                             and teclab.tec_cod=tec.tec_cod 
                             and ing.ing_cod=ingdet.ing_cod
                             and ingdet.ins_cod=ins.ins_cod
-                            and ingdet.situacion='EN ESPERA'
+                            and cli.cli_cod=ing.cli_cod
+                            and ingdet.situacion='RECEPCION'
                             and tec.tec_cod=$codtecnico";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
                         echo "<tr><td>".$row1["ing_coddet"]."</td>";
-                        echo "<td>".$row1["ing_cant"]."</td>";
+                        echo "<td>".$row1["nombres"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
+                        echo "<td>".$row1["ing_obs"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";
                         echo "<td>".$row1["situacion"]."</td>";
-                        echo "<td>";?>
-                        <button onclick="cambiarEstado(<?php echo $row1["ing_coddet"]; ?>)" type="submit" name="modificar" class="btn btn-primary">Calibrar</button>
-                        <?php
-                        echo "</td></tr>";
+                        echo "</tr>";
                     }
                     pg_free_result($result);
                     ?>

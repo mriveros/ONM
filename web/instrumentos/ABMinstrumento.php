@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
@@ -125,7 +125,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["ins_des"]."</td>";
                         echo "<td>".$row1["lab_nom"]."</td>";
-                        echo "<td><b>".$row1["fecha"]."</b></td>";
+                        echo "<td>".$row1["fecha"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
                         <a onclick='tuhermana(<?php echo $row1["ins_cod"];?>)' class="btn btn-default btn-xs active" data-toggle="modal" data-target="#modalagr" role="button">Nuevo</a>

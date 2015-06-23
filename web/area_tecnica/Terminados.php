@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["codigo_usuario"]))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $codtecnico=  $_SESSION["codigo_usuario"];
 ?>
 <!DOCTYPE html>
@@ -92,22 +92,24 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
-                                            <th>Cantidad</th>
+                                            <th>Cliente</th>
                                             <th>Instrumento</th>
                                             <th>Fecha Entrega</th>
+                                            <th>Fecha Terminacion</th>
                                             <th>Situacion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,ingdet.situacion 
-                            from tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, 
+                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,cli.cli_nom|| ' '||cli.cli_ape as nombres,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,to_char(ingdet.fecha_trabajo,'DD/MM/YYYY')as fecha_trabajo,ingdet.situacion 
+                            from tecnicos_laboratorios teclab,clientes cli,tecnicos tec,ingreso ing, ingreso_detalle ingdet, 
                             laboratorios lab, instrumentos ins
                             where ins.lab_cod=lab.lab_cod 
                             and  teclab.lab_cod=lab.lab_cod 
                             and teclab.tec_cod=tec.tec_cod 
                             and ing.ing_cod=ingdet.ing_cod
                             and ingdet.ins_cod=ins.ins_cod
+                            and cli.cli_cod=ing.cli_cod
                             and ingdet.situacion='TERMINADO'
                             and tec.tec_cod=$codtecnico";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
@@ -117,6 +119,7 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                         echo "<td>".$row1["ing_cant"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";
+                         echo "<td>".$row1["fecha_trabajo"]."</td>";
                         echo "<td>".$row1["situacion"]."</td>";
                         echo "</tr>";
                     }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
@@ -113,8 +113,8 @@ $catego=  $_SESSION["categoria_usuario"];
                         echo "<td>".$row1["ing_proforma"]."</td>";
                         echo "<td>".$row1["nombres"]."</td>";
                         echo "<td>".$row1["ing_obs"]."</td>";
-                        echo "<td><b>".$row1["fecha_recepcion"]."</b></td>";
-                        echo "<td><b>".$row1["fecha_entrega"]."</b></td>";
+                        echo "<td>".$row1["fecha_recepcion"]."</td>";
+                        echo "<td>".$row1["fecha_entrega"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
                         <button onclick="asignarCodigo(<?php echo $row1["ing_cod"]; ?>)" type="submit" name="modificar" class="btn btn-primary">Ver Detalles</button>

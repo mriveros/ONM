@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
@@ -127,7 +127,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         echo "<tr><td>".$row1["cli_cod"]."</td>";
                         echo "<td>".$row1["cli_nom"]."</td>";
                         echo "<td>".$row1["cli_ape"]."</td>";
-                        echo "<td><b>".$row1["cli_ruc"]."</b></td>";
+                        echo "<td>".$row1["cli_ruc"]."</td>";
                         echo "<td>".$row1["cli_mail"]."</td>";
                         echo "<td>".$row1["cli_nro"]."</td>";
                         echo "<td>".$estado."</td>";

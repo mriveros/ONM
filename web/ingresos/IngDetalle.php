@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
@@ -53,12 +53,14 @@ $catego=  $_SESSION["categoria_usuario"];
 			indi = $(this).index();
                         //var codusuario=document.getElementById("dataTables-example").rows[indi+1].cells[0].innerText;
 			var cantidad=document.getElementById("dataTables-example").rows[indi+1].cells[1].innerText;
-			var instrumento=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
+			var instrumento=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText
+                        var obs=document.getElementById("dataTables-example").rows[indi+1].cells[3].innerText;
                        
 			//var estado=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
                         document.getElementById("txtCodigo").value = coddetalle;
                         document.getElementById("txtCantidad").value = cantidad;
 			document.getElementById("txtInstrumento").value = instrumento;
+                        document.getElementById("idObs").value = obs;
 			});
 		};
 		function Redirigir(){
@@ -94,7 +96,6 @@ $catego=  $_SESSION["categoria_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
-                                            <th>Cantidad</th>
                                             <th>Instrumento</th>
                                             <th>Estado</th>
                                             <th>Situacion</th>
@@ -118,7 +119,6 @@ $catego=  $_SESSION["categoria_usuario"];
                         $estado=$row1["estado"];
                         if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
                         echo "<tr><td>".$row1["ing_coddet"]."</td>";
-                        echo "<td>".$row1["ing_cant"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>".$row1["situacion"]."</td>";
@@ -182,7 +182,13 @@ $catego=  $_SESSION["categoria_usuario"];
                                                     ?>
                                                 </select>
                                             </div>
-					</div>	
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Observacion</label>
+                                            <div class="col-sm-10">
+                                            <input rows="3" name="txtObsA" class="form-control" id="idObsA" />
+                                            </div>
+					</div>
 				</div>
 				
 				<!-- Modal Footer -->
@@ -235,7 +241,13 @@ $catego=  $_SESSION["categoria_usuario"];
                                                 ?>
                                              </select>
                                             </div>
-					</div>	
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Observacion</label>
+                                            <div class="col-sm-10">
+                                            <input rows="3" name="txtObsM" class="form-control" id="idObs"   />
+                                            </div>
+					</div>
 				</div>
 				<!-- Modal Footer -->
 				<div class="modal-footer">

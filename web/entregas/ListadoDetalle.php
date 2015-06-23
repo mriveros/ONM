@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
@@ -86,9 +86,8 @@ $catego=  $_SESSION["categoria_usuario"];
                                                         <thead>
                                                             <tr class="success">
                                                                 <th>Codigo</th>
-                                                                <th>Cantidad</th>
                                                                 <th>Instrumento</th>
-                                                                <th>Fecha Entrega</th>
+                                                                <th>Fecha Entrega Prevista</th>
                                                                 <th>Estado</th>
                                                                 <th>Accion</th>
                                                             </tr>
@@ -107,7 +106,6 @@ $catego=  $_SESSION["categoria_usuario"];
                                             $estado=$row1["estado"];
                                             if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
                                             echo "<tr><td>".$row1["ing_coddet"]."</td>";
-                                            echo "<td>".$row1["ing_cant"]."</td>";
                                             echo "<td>".$row1["ins_nom"]."</td>";
                                             echo "<td>".$row1["fecha"]."</td>";
                                             echo "<td>".$estado."</td>";

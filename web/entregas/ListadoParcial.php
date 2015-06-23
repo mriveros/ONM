@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
@@ -102,9 +102,9 @@ $catego=  $_SESSION["categoria_usuario"];
                                     <tbody>
                     <?php
                     $query = "select ing.ing_cod,ing.ing_proforma,ing.cli_cod,cli.cli_nom || ' '|| cli.cli_ape as nombres,
-                            to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,ing.estado,ing.situacion,ing.ing_obs 
-                            from ingreso ing, clientes cli, ingreso_detalle ingdet where cli.cli_cod=ing.cli_cod and ing.estado='t' and
-                            ing.ing_cod=ingdet.ing_cod and ingdet.situacion='TERMINADO'";
+                    to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,ing.estado,ing.situacion,ing.ing_obs 
+                    from ingreso ing, clientes cli
+                    where cli.cli_cod=ing.cli_cod and ing.estado='t'";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
@@ -114,8 +114,8 @@ $catego=  $_SESSION["categoria_usuario"];
                         echo "<td>".$row1["ing_proforma"]."</td>";
                         echo "<td>".$row1["nombres"]."</td>";
                         echo "<td>".$row1["ing_obs"]."</td>";
-                        echo "<td><b>".$row1["fecha_recepcion"]."</b></td>";
-                        echo "<td><b>".$row1["fecha_entrega"]."</b></td>";
+                        echo "<td>".$row1["fecha_recepcion"]."</td>";
+                        echo "<td>".$row1["fecha_entrega"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
                         <button onclick="asignarCodigo(<?php echo $row1["ing_cod"]; ?>)" type="submit" name="modificar" class="btn btn-primary">Ver Detalles</button>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["codigo_usuario"]))
-header("Location:http://localhost/app/PhpEventos/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $codtecnico=  $_SESSION["codigo_usuario"];
 ?>
 <!DOCTYPE html>
@@ -93,15 +93,17 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                         <tr class="success">
                                             <th>Codigo</th>
                                             <th>Cliente</th>
-                                            <th>Cantidad</th>
                                             <th>Instrumento</th>
-                                            <th>Fecha Entrega</th>
+                                            <th>Fecha Entrega Prevista</th>
+                                             <th>Fecha Trabajado</th>
+                                            <th>Fecha Entrega Real</th>
                                             <th>Situacion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,cli.cli_nom||' '||cli.cli_ape as nombres,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,ingdet.situacion 
+                    $query = "select ingdet.ing_coddet,cli.cli_nom||' '||cli.cli_ape as nombres,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,
+                        to_char(ingdet.fecha_trabajo,'DD/MM/YYYY') as fecha_trabajo,to_char(ingdet.fecha_entrega,'DD/MM/YYYY') as fecha_entrega_real,ingdet.situacion 
                     from clientes cli,tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, laboratorios lab, instrumentos ins
                     where ins.lab_cod=lab.lab_cod 
                     and  teclab.lab_cod=lab.lab_cod 
@@ -116,9 +118,10 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                     {
                         echo "<tr><td>".$row1["ing_coddet"]."</td>";
                         echo "<td>".$row1["nombres"]."</td>";
-                        echo "<td>".$row1["ing_cant"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";
+                        echo "<td>".$row1["fecha_trabajo"]."</td>";
+                        echo "<td>".$row1["fecha_entrega_real"]."</td>";
                         echo "<td>".$row1["situacion"]."</td>";
                         echo "</tr>";
                     }

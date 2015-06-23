@@ -11,10 +11,12 @@
     //Datos del Form Agregar
     if  (empty($_POST['txtCantidadA'])){$cantidadA=0;}else{ $cantidadA = $_POST['txtCantidadA'];}
     if  (empty($_POST['txtInstrumentoA'])){$instrumentoA=0;}else{ $instrumentoA= $_POST['txtInstrumentoA'];}
+     if  (empty($_POST['txtObsA'])){$obsA=0;}else{ $obsA= $_POST['txtObsA'];}
     
     //Datos del Form Modificar
     if  (empty($_POST['txtCodigo'])){$codigoModif=0;}else{$codigoModif=$_POST['txtCodigo'];}
     if  (empty($_POST['txtCantidad'])){$cantidadM=0;}else{ $cantidadM = $_POST['txtCantidad'];}
+    if  (empty($_POST['idObs'])){$obsM=0;}else{ $obsM = $_POST['idObs'];}
     if  (empty($_POST['txtInstrumento'])){$instrumentoM=0;}else{ $instrumentoM= $_POST['txtInstrumento'];}
    
     
@@ -26,20 +28,26 @@
     if  (empty($_POST['txtCodigoE'])){$codigoElim=0;}else{$codigoElim=$_POST['txtCodigoE'];}
         //Si es agregar
         if(isset($_POST['agregar'])){           
-                //se define el Query   
-                $query = "INSERT INTO ingreso_detalle(ing_cod,ing_cant,ins_cod,estado,situacion) "
-                        . "VALUES ($codcabecera,$cantidadA,$instrumentoA,'t','RECEPCION');";
+                //se define el Query
+            $x=0;
+            for($x=0;$x<$cantidadA;$x++)
+            {
+                $query = "INSERT INTO ingreso_detalle(ing_cod,ing_cant,ing_cant_term,ins_cod,estado,situacion,ing_obs) "
+                        . "VALUES ($codcabecera,$cantidadA,$cantidadA,$instrumentoA,'t','RECEPCION','$obsA');";
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
+            }    
                 $query = '';
                 header("Refresh:0; url=http://localhost/app/ONM/web/ingresos/IngDetalle.php");
+             
                 }
         //si es Modificar    
         if(isset($_POST['modificar'])){
             
-            pg_query("update ingreso_detalle set ing_cant='$cantidadM',ins_cod=$instrumentoM "
+            pg_query("update ingreso_detalle set ing_cant='$cantidadM',ing_cant_term='$cantidadM',ins_cod=$instrumentoM,ing_obs='$obsM' "
                     . "WHERE ins_cod=$codigoModif");
-            $query = '';
+            
+             $query = '';
            header("Refresh:0; url=http://localhost/app/ONM/web/ingresos/IngDetalle.php");
         }
         //Si es Eliminar
