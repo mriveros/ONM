@@ -182,7 +182,7 @@ while($i<$numregs)
     
    
      
-     $pdf->Cell(15,5,$i+1,1,0,'C',$fill);
+    $pdf->Cell(15,5,$i+1,1,0,'C',$fill);
     $pdf->Cell(13,5,number_format($nrolinea, 0, '', '.'),1,0,'C',$fill);
     $pdf->Cell(45,5,$cargo,1,0,'C',$fill);
     $pdf->Cell(15,5,$cedula,1,0,'C',$fill);
