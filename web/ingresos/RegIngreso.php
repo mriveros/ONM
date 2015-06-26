@@ -73,7 +73,10 @@ $catego=  $_SESSION["categoria_usuario"];
                 }
             }
             function Cancelar(){
-                window.location="http://localhost/app/ONM/web/menu.php";
+                document.getElementById("idProforma").value="";
+                document.getElementById("idObs").value="";
+                
+                window.location="http://localhost/app/ONM/web/informes/InformeIngreso.php";
             }
 	</script>
         
@@ -132,7 +135,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                         </div>
                                         <div class="modal-footer">
                                             <a onclick="Registrar()" class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalprueba" role="button">Agregar Detalle</a>
-                                            <a onclick="Cancelar()" class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Ir a menu</a>
+                                            <a onclick="Cancelar()" class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Imprimir Ingreso</a>
 					</form>
                                         </div>
                                     </form>

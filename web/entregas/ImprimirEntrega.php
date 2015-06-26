@@ -14,7 +14,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>ONM-Entrega Parcial</title>
+    <title>ONM-Imprimir Entrega Parcial</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -52,8 +52,9 @@ $catego=  $_SESSION["categoria_usuario"];
     });
     </script>
     <script type="text/javascript">
-		function asignarCodigo(codigo){
+		function imprimir(codigo){
                     document.getElementById('idCodigo').value=codigo;
+                    document.getElementById('idCodigoDet').value=codigo;
 		};
 	</script>	
 </head>
@@ -71,7 +72,7 @@ $catego=  $_SESSION["categoria_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Listado Entrega - <small>ONM WORKFLOW</small></h1>
+                      <h1 class="page-header">Listado Terminados para Imprimir - <small>ONM WORKFLOW</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -79,10 +80,10 @@ $catego=  $_SESSION["categoria_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Listado de Entregas
+                            Listado de Entregas por Imprimir
                         </div>
                         <!-- /.panel-heading -->
-                        <form class="form-horizontal" action="ListadoDetalle.php"  method="post" role="form" >
+                        <form class="form-horizontal" action="../informes/InformeEntrega.php"  method="post" role="form" >
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
                                 <input  type="hidden" name="txtCodigo" id="idCodigo" required>
@@ -101,10 +102,10 @@ $catego=  $_SESSION["categoria_usuario"];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select distinct(ing.ing_cod),ing.ing_proforma,ing.cli_cod,cli.cli_nom || ' '|| cli.cli_ape as nombres,
+                    $query = "select ing.ing_cod,ing.ing_proforma,ing.cli_cod,cli.cli_nom || ' '|| cli.cli_ape as nombres,
                     to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,ing.estado,ing.situacion,ing.ing_obs 
                     from ingreso ing,ingreso_detalle ingdet, clientes cli
-                    where cli.cli_cod=ing.cli_cod and ingdet.ing_cod=ing.ing_cod and ingdet.situacion='TERMINADO'";
+                    where cli.cli_cod=ing.cli_cod and ingdet.ing_cod=ing.ing_cod and ingdet.situacion='ENTREGADO' and ingdet.ing_estado='f'";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
@@ -118,7 +119,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         echo "<td>".$row1["fecha_entrega"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
-                        <button onclick="asignarCodigo(<?php echo $row1["ing_cod"]; ?>)" type="submit" name="modificar" class="btn btn-primary">Ver Detalles</button>
+                        <button onclick="imprimir(<?php echo $row1["ing_cod"]; ?>)" type="submit" name="modificar" class="btn btn-primary">Imprimir</button>
                         <?php
                         echo "</td></tr>";
                     }

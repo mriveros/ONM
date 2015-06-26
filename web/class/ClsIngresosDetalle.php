@@ -32,8 +32,8 @@
             $x=0;
             for($x=0;$x<$cantidadA;$x++)
             {
-                $query = "INSERT INTO ingreso_detalle(ing_cod,ing_cant,ing_cant_term,ins_cod,estado,situacion,ing_obs) "
-                        . "VALUES ($codcabecera,$cantidadA,$cantidadA,$instrumentoA,'t','RECEPCION','$obsA');";
+                $query = "INSERT INTO ingreso_detalle(ing_cod,ing_cant,ing_cant_term,ins_cod,estado,situacion,ing_obs,ing_estado) "
+                        . "VALUES ($codcabecera,$cantidadA,$cantidadA,$instrumentoA,'t','RECEPCION','$obsA','f');";
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
             }    

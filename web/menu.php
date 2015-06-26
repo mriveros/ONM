@@ -201,6 +201,7 @@
                                     <a href="http://localhost/app/ONM/web/entregas/Terminados.php">Intrumentos Terminados</a>
                                     <a href="http://localhost/app/ONM/web/entregas/ListadoParcial.php">Realizar Entrega Parcial</a>
                                     <a href="http://localhost/app/ONM/web/entregas/Entregados.php">Intrumentos Entregados</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/ImprimirEntrega.php">Imprimir Entrega</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
