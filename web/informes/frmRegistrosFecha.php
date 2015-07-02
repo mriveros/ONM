@@ -1,8 +1,8 @@
 <?php
 session_start();
-if(!isset($_SESSION["codigo_usuario"]))
+if(!isset($_SESSION['codigo_usuario']))
 header("Location:http://localhost/app/ONM/login/acceso.html");
-$codcliente=  $_SESSION["codigo_usuario"];
+$catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +14,8 @@ $codcliente=  $_SESSION["codigo_usuario"];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>ONM-Listado Ingresos</title>
+
+    <title>ONM- Informes</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -44,13 +45,7 @@ $codcliente=  $_SESSION["codigo_usuario"];
     <script src="../../dist/js/sb-admin-2.js"></script>
 	    
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-			responsive: true
-        });
-    });
-    </script>
+    
 </head>
 
 <body>
@@ -59,14 +54,14 @@ $codcliente=  $_SESSION["codigo_usuario"];
 
         <?php 
         include("../funciones.php");
-        include("./menu_clientes.php");   
+        include("../menu.php");
         conexionlocal();
         ?>
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Listado Terminados - <small>ONM WORKFLOW</small></h1>
+                      <h1 class="page-header">Informes - <small>ONM WORKFLOW</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -74,46 +69,49 @@ $codcliente=  $_SESSION["codigo_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Listado de Instrumentos Calibrados
+                            Informe de Registros por fecha
                         </div>
                         <!-- /.panel-heading -->
-                        <form class="form-horizontal"   method="post" role="form" >
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr class="success">
-                                            <th>Instrumento</th>
-                                            <th>Fecha Entrega</th>
-                                            <th>Situacion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                    <?php
-                    $query = "select ingdet.ing_coddet,cli.cli_nom||' '||cli.cli_ape as nombres,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,ingdet.situacion 
-                    from ingreso ing, ingreso_detalle ingdet,  instrumentos ins, clientes cli
-                    where ing.ing_cod=ingdet.ing_cod
-                    and ingdet.ins_cod=ins.ins_cod
-                    and ingdet.situacion='TERMINADO'
-                    and ing.cli_cod=cli.cli_cod
-                    and cli.cli_cod=$codcliente";
-                    $result = pg_query($query) or die ("Error al realizar la consulta");
-                    while($row1 = pg_fetch_array($result))
-                    {
-                        echo "<td>".$row1["ins_nom"]."</td>";
-                        echo "<td>".$row1["fecha_entrega"]."</td>";
-                        echo "<td>".$row1["situacion"]."</td>";
-                        echo "</tr>";
-                    }
-                    pg_free_result($result);
-                    ?>
-                                    </tbody>
-                                </table>
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header"><button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title" id="myModalLabel"><i class="fa fa-archive"></i> Registros de Entradas por Fecha</h3>
+				</div>
+            
+				<!-- Modal Body -->
+				<div class="modal-body">
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="InfRegistrosFecha.php" method="post" role="form">
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Desde Fecha</label>
+                                            <div class="col-sm-10">
+                                            <input type="date" name="txtDesdeFecha" class="form-control" id="txtDesdeFecha" required />
+                                            </div>
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Hasta Fecha</label>
+                                            <div class="col-sm-10">
+                                            <input type="date" name="txtHastaFecha" class="form-control" id="txtHastaFecha" required />
+                                            </div>
+					</div>
+				</div>
+				
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<button type="reset" onclick="location.reload();" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+					<button type="submit" name="agregar" class="btn btn-primary">Generar!</button>
+					</form>
+				</div>
+			</div>
+                    </div>
                             </div>		
                         </div>
-                       </form>
                         <!-- /.panel-body -->
                     </div>
+                  
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
@@ -125,5 +123,5 @@ $codcliente=  $_SESSION["codigo_usuario"];
 
     </div>
     <!-- /#wrapper -->
- 
+    
 </html>

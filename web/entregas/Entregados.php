@@ -91,18 +91,18 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="success">
-                                            <th>Codigo</th>
+                                            <th>Nro. Control</th>
                                             <th>Cliente</th>
                                             <th>Instrumento</th>
-                                            <th>Fecha Entrega Prevista</th>
-                                             <th>Fecha Trabajado</th>
-                                            <th>Fecha Entrega Real</th>
+                                            <th>Entrega Prevista</th>
+                                             <th>Trabajado</th>
+                                            <th>Entrega Real</th>
                                             <th>Situacion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,cli.cli_nom||' '||cli.cli_ape as nombres,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,
+                    $query = "select ing.ing_proforma,ingdet.ing_coddet,cli.cli_nom||' '||cli.cli_ape as nombres,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,
                         to_char(ingdet.fecha_trabajo,'DD/MM/YYYY') as fecha_trabajo,to_char(ingdet.fecha_entrega,'DD/MM/YYYY') as fecha_entrega_real,ingdet.situacion 
                     from clientes cli,tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, laboratorios lab, instrumentos ins
                     where ins.lab_cod=lab.lab_cod 
@@ -116,7 +116,7 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
-                        echo "<tr><td>".$row1["ing_coddet"]."</td>";
+                        echo "<tr><td>".$row1["ing_proforma"]."</td>";
                         echo "<td>".$row1["nombres"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";

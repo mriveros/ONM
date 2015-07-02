@@ -14,7 +14,7 @@
     if  (empty($_POST['txtRucA'])){$rucA=0;}else{ $rucA= $_POST['txtRucA'];}
     if  (empty($_POST['txtMailA'])){$mailA=0;}else{ $mailA= $_POST['txtMailA'];}
     if  (empty($_POST['txtNroA'])){$nroA=0;}else{ $nroA= $_POST['txtNroA'];}
-    if  (empty($_POST['txtEstadoA'])){$estadoA='f';}else{ $estadoA= 't';}
+    if  (empty($_POST['opcionA'])){$estadoA='f';}else{ $estadoA= 't';}
     
     //Datos del Form Modificar
     if  (empty($_POST['txtCodigo'])){$codigoModif=0;}else{$codigoModif=$_POST['txtCodigo'];}

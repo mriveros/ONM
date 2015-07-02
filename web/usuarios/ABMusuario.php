@@ -128,7 +128,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         echo "<td>".$row1["usu_pass"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
-                        <a onclick='tuhermana(<?php echo $row1["usu_cod"];?>)' class="btn btn-default btn-xs active" data-toggle="modal" data-target="#modalagr" role="button">Nuevo</a>
+                        
                         <a onclick='modificar(<?php echo $row1["usu_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalmod" role="button">Modificar</a>
                         <a onclick='eliminar(<?php echo $row1["usu_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
                         <?php
@@ -140,8 +140,10 @@ $catego=  $_SESSION["categoria_usuario"];
                                 </table>
                             </div>		
                         </div>
+                        
                         <!-- /.panel-body -->
                     </div>
+                    <a  class="btn btn-primary" data-toggle="modal" data-target="#modalagr" role="button">Nuevo</a>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->

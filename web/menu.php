@@ -130,7 +130,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuracion</a>
                         </li>
                         <li class="divider"></li>
-			<li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
+                        <li><a href="http://localhost/app/ONM/web/logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -200,8 +200,8 @@
                                 <li>
                                     <a href="http://localhost/app/ONM/web/entregas/Terminados.php">Intrumentos Terminados</a>
                                     <a href="http://localhost/app/ONM/web/entregas/ListadoParcial.php">Realizar Entrega Parcial</a>
-                                    <a href="http://localhost/app/ONM/web/entregas/Entregados.php">Intrumentos Entregados</a>
                                     <a href="http://localhost/app/ONM/web/entregas/ImprimirEntrega.php">Imprimir Entrega</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/Entregados.php">Intrumentos Entregados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -210,7 +210,7 @@
                             <a href="#"><i class="fa  fa-file-text "></i> INFORMES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Resumen en Entrada</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmRegistrosFecha.php">Registros por Fecha</a>
                                 </li>
                                 <li>
                                     <a href="buttons.html">Resumen en Calibracion</a>
@@ -263,6 +263,7 @@
                                    <a href="http://localhost/app/ONM/web/login_clientes/acceso.html">Login</a>
                                    <a href="http://localhost/app/ONM/web/area_clientes/EnProgreso.php">En Progreso</a>
                                    <a href="http://localhost/app/ONM/web/area_clientes/Terminados.php">Instrumentos Calibrados</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/Entregados.php">Instrumentos Entregados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

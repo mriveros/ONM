@@ -135,9 +135,14 @@ while($i<$numregs)
     $pdf->Cell(95,5,$observacion,1,1,'L',$fill);
     $fill=!$fill;
     $i++;
-    $consulta=pg_exec($conectate,"update ingreso_detalle set ing_estado='t' where ing_coddet=$codigodetalle");
+    $actualizar=pg_exec($conectate,"update ingreso_detalle set ing_estado='t' where ing_coddet=$codigodetalle");
 }
-
+$actualizar=pg_exec($conectate,"select COALESCE(sum(ing_coddet),0) as detalle_si_no from ingreso_detalle where ing_estado='f' and ing_cod=$codigo");
+$cantidad=pg_result($actualizar,0,'detalle_si_no');
+if ($cantidad==0)
+{
+    $actualizar=pg_exec($conectate,"update ingreso set estado='f',situacion='ENTREGADO' where ing_cod=$codigo");
+}
 //Add a rectangle, a line, a logo and some text
 /*
 $pdf->Rect(5,5,170,80);

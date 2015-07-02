@@ -16,7 +16,7 @@ $pwd=$_REQUEST['clave'];
 //print_r($_REQUEST);
 //////////////////////////INGRESO DE USUARIO
 	$sql= "SELECT * FROM usuarios u
-        WHERE u.usu_username = '$usr' AND u.usu_pass =('$pwd') and u.estado='t'" ;
+        WHERE u.usu_username = '$usr' AND u.usu_pass =md5('$pwd') and u.estado='t'" ;
 	//echo "$sql";
 	//echo $n.' ---'.$sql; 
 	$datosusr = pg_query($sql);
