@@ -189,6 +189,7 @@
                                 <li>
                                     <a href="http://localhost/app/ONM/web/ingresos/RegIngreso.php">Registrar Ingreso</a>
                                     <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Listado Ingresos</a>
+                                    <a href="http://localhost/app/ONM/web/ingresos/AnularDetalle.php">Anular Detalle de Ingreso</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -213,12 +214,11 @@
                                     <a href="http://localhost/app/ONM/web/informes/frmRegistrosFecha.php">Registros por Fecha</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Resumen en Calibracion</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmClientesInstrumentosFecha.php">Intrumentos Recibidos por Clientes</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Resumen de Terminados</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmRegistrosAnuladosFecha.php">Registros Anulados</a>
                                 </li>
-                                 
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -226,10 +226,13 @@
                             <a href="#"><i class="fa  fa-bar-chart-o"></i> ESTADISTICAS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="buttons.html">Ranking de Terminados</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmRankingInstrumentosClientes.php">Ranking- Instrumentos por Cliente</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Ranking de trabajo por Mes</a>
+                                  <a href="http://localhost/app/ONM/web/informes/frmRankingLaboratorios.php">Ranking- Instrumentos por Laboratorio</a>
+                                </li>
+                                <li>
+                                    <a href="http://localhost/app/ONM/web/informes/frmRankingCalibraciones.php">Ranking- Total Calibrados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
