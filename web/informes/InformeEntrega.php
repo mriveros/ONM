@@ -40,12 +40,12 @@ function Header()
     $this->text(37,29,"ORGANISMO NACIONAL DE METROLOGIA");
     $this->text(37,34,"Telefax: (595921) 295 408 e-mail: metrologia@intn.gov.py");
     //-----------------------TRAEMOS LOS DATOS DE CABECERA----------------------
-    $conectate=pg_connect("host=localhost port=5434 dbname=onmworkflow user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     //if  (empty($_GET['codigo'])){$codigodetalle=0;}else{$codigodetalle=$_GET['codigo'];}
     if  (empty($_POST['txtCodigo'])){$codigo=0;}else{$codigo=$_POST['txtCodigo'];}
     $consulta=pg_exec($conectate,"select ing.ing_cod, ing.ing_proforma,to_char(now(),'DD/MM/YYYY') as fecha_recepcion,
-    cli.cli_nom||' '||cli.cli_ape as cliente, to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
+    cli.cli_nom||' '||cli.cli_ape as cliente, to_char(now(),'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
     from ingreso ing, clientes cli
     where ing.cli_cod=cli.cli_cod
     and ing.ing_cod=$codigo");
@@ -101,7 +101,7 @@ $pdf->SetTextColor(0);
 
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=localhost port=5434 dbname=onmworkflow user=postgres password=postgres"
+$conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 
 if  (empty($_POST['txtCodigo'])){$codigo=0;}else{$codigo=$_POST['txtCodigo'];}

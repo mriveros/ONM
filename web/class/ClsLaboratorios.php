@@ -10,13 +10,13 @@
     
     //Datos del Form Agregar
     if  (empty($_POST['txtNombreA'])){$nombreA=0;}else{ $nombreA = $_POST['txtNombreA'];}
-    if  (empty($_POST['txtDescripcionA'])){$descripcionA=0;}else{ $descripcionA= $_POST['txtDescripcionA'];}
+    if  (empty($_POST['txtDescripcionA'])){$descripcionA='';}else{ $descripcionA= $_POST['txtDescripcionA'];}
     if  (empty($_POST['txtEstadoA'])){$estadoA='f';}else{ $estadoA= 't';}
     
     //Datos del Form Modificar
     if  (empty($_POST['txtCodigo'])){$codigoModif=0;}else{$codigoModif=$_POST['txtCodigo'];}
-    if  (empty($_POST['txtNombre'])){$nombreM=0;}else{ $nombreM = $_POST['txtNombre'];}
-    if  (empty($_POST['txtDescripcion'])){$descripcionM=0;}else{ $descripcionM= $_POST['txtDescripcion'];}
+    if  (empty($_POST['txtNombre'])){$nombreM='';}else{ $nombreM = $_POST['txtNombre'];}
+    if  (empty($_POST['txtDescripcion'])){$descripcionM='';}else{ $descripcionM= $_POST['txtDescripcion'];}
     if  (empty($_POST['txtEstado'])){$estadoM='f';}else{ $estadoM= 't';}
     
     //DAtos para el Eliminado Logico

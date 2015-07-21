@@ -10,13 +10,13 @@
     
     //Datos del Form Agregar
     if  (empty($_POST['txtTecnicoA'])){$tecnicoA=0;}else{ $tecnicoA = $_POST['txtTecnicoA'];}
-    if  (empty($_POST['txtLaboratorioA'])){$laboratorioA=0;}else{ $laboratorioA= $_POST['txtLaboratorioA'];}
+    if  (empty($_POST['txtLaboratorioA'])){$laboratorioA='';}else{ $laboratorioA= $_POST['txtLaboratorioA'];}
     if  (empty($_POST['txtEstadoA'])){$estadoA='f';}else{ $estadoA= 't';}
     
     //Datos del Form Modificar
     if  (empty($_POST['txtCodigo'])){$codigoModif=0;}else{$codigoModif=$_POST['txtCodigo'];}
-    if  (empty($_POST['txtTecnico'])){$tecnicoM=0;}else{ $tecnicoM = $_POST['txtTecnico'];}
-    if  (empty($_POST['txtLaboratorio'])){$laboratorioM=0;}else{ $laboratorioM= $_POST['txtLaboratorio'];}
+    if  (empty($_POST['txtTecnico'])){$tecnicoM='';}else{ $tecnicoM = $_POST['txtTecnico'];}
+    if  (empty($_POST['txtLaboratorio'])){$laboratorioM='';}else{ $laboratorioM= $_POST['txtLaboratorio'];}
     if  (empty($_POST['txtEstado'])){$estadoM='f';}else{ $estadoM= 't';}
     
     //DAtos para el Eliminado Logico

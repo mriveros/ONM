@@ -14,7 +14,7 @@ function Footer()
         if  (empty($_POST['txtLaboratorio'])){$codlaboratorio='';}else{ $codlaboratorio = $_POST['txtLaboratorio'];}
         if  (empty($_POST['txtDesdeFecha'])){$desde='';}else{ $desde= $_POST['txtDesdeFecha'];}
         if  (empty($_POST['txtHastaFecha'])){$hasta='';}else{ $hasta= $_POST['txtHastaFecha'];}
-        $conectate=pg_connect("host=localhost port=5434 dbname=onmworkflow user=postgres password=postgres"
+        $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                             . "")or die ('Error al conectar a la base de datos');
         $consulta=pg_exec($conectate,"select sum(1) as cantidad
         from ingreso ing, laboratorios lab, instrumentos ins,ingreso_detalle ingdet
@@ -68,7 +68,7 @@ function Header()
    if  (empty($_POST['txtLaboratorio'])){$codlaboratorio='';}else{ $codlaboratorio = $_POST['txtLaboratorio'];}
     if  (empty($_POST['txtDesdeFecha'])){$desde='';}else{ $desde= $_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$hasta='';}else{ $hasta= $_POST['txtHastaFecha'];}
-    $conectate=pg_connect("host=localhost port=5434 dbname=onmworkflow user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select lab_nom as laboratorio from laboratorios where lab_cod=$codlaboratorio");
     $laboratorio=pg_result($consulta,0,'laboratorio');
@@ -109,7 +109,7 @@ $i=0;
 $pdf->SetFont('Arial','',10);
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=localhost port=5434 dbname=onmworkflow user=postgres password=postgres"
+$conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 $consulta=pg_exec($conectate,"select sum(1)as cantidad,max(ins.ins_nom) as ins_nom
 from ingreso ing, laboratorios lab, instrumentos ins,ingreso_detalle ingdet

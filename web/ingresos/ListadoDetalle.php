@@ -47,14 +47,22 @@ $catego=  $_SESSION["categoria_usuario"];
     </script>
 	<script type="text/javascript">
 		function modificarEstado(coddetalle){
-                            $.ajax({type: "GET",url:"../class/ClsListadoDetalle.php",data:"coddetalle="+coddetalle,success:function(msg){
-                            $("#").fadeIn("slow",function(){
-                            $("#").html(msg);
-                            })}})
-                        
+                    var codigotecnico=document.getElementById("Codigo").value;
+                    if(codigotecnico=="")
+                    {
+                        codigotecnico=1;
+                    }
+                    $.ajax({type: "GET",url:"../class/ClsListadoDetalle.php",data:"coddetalle="+coddetalle+"&codtecnico="+codigotecnico,success:function(msg){
+                    $("#").fadeIn("slow",function(){
+                    $("#").html(msg);
+                    })}})
+                    window.location.reload();    
 		};
 		function Redirigir(){
 			window.location.reload();
+		};
+                function asignarCodigo(){
+                    document.getElementById("Codigo").value =document.getElementById("txtTecnicoA").value;
 		};
 	</script>
 </head>
@@ -72,6 +80,7 @@ $catego=  $_SESSION["categoria_usuario"];
                       <h1 class="page-header">Listado Detalle</h1>
                 </div>	
             </div>
+            <input type="hidden" name='txtCodigo' id='Codigo'>
             <!-- /.row -->
             <div class="row">
                                     <div class="col-lg-12">
@@ -80,8 +89,9 @@ $catego=  $_SESSION["categoria_usuario"];
                                                 Listado de Instrumentos
                                             </div>
                                             <!-- /.panel-heading -->
+                                          
                                             <div class="panel-body" >
-                                                <div class="dataTable_wrapper" onclick="javascript:location.reload()">
+                                                <div class="dataTable_wrapper" >
                                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                         <thead>
                                                             <tr class="success">
@@ -90,12 +100,12 @@ $catego=  $_SESSION["categoria_usuario"];
                                                                 <th>Laboratorio</th>
                                                                 <th>Fecha Entrega</th>
                                                                 <th>Estado</th>
+                                                                <th>Asignar a..</th>
                                                                 <th>Accion</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                         <?php
-                                       
                                         if  (empty($_POST['txtCodigo'])){$codigo=0;}else{ $codigo = $_POST['txtCodigo'];}
                                         $query = "select ingdet.ing_coddet, ing.ing_cod,lab.lab_nom, ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,to_char(ins.fecha,'DD/MM/YYYY')as fecha,ins.estado 
                                         from instrumentos ins, laboratorios lab,ingreso ing,ingreso_detalle ingdet 
@@ -111,13 +121,22 @@ $catego=  $_SESSION["categoria_usuario"];
                                             echo "<td>".$row1["lab_nom"]."</td>";
                                             echo "<td>".$row1["fecha"]."</td>";
                                             echo "<td>".$estado."</td>";
-                                            echo "<td>";?>
-                                            <a onclick='modificarEstado(<?php echo $row1["ing_coddet"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalprueba" role="button">Enviar a Area Tecnica</a>
-                                            <?php
-                                            echo "</td></tr>";
-                        
-                                            }
-                                        pg_free_result($result);
+                                              
+                                            echo '<td><select onChange="asignarCodigo()" name="txtTecnicoA" class="form-control" id="txtTecnicoA" required>';
+                                                    //esto es para mostrar un select que trae datos de la BDD
+                                                    conexionlocal();
+                                                    $query = "Select tec_cod,tec_nom||' '|| tec_ape from tecnicos where estado='t'";
+                                                    $resultadoSelect = pg_query($query);
+                                                    while ($row = pg_fetch_row($resultadoSelect)) {
+                                                        echo "<option value=" . $row[0] . ">";
+                                                        echo $row[1];
+                                                        echo "</option>";
+                                                    }
+                                            echo '</select></td><td onclick="javascript:location.reload()">';
+                                            ?>
+                                                        <a onclick="modificarEstado(<?php echo $row1['ing_coddet'];?>)" class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalprueba" role="button">Enviar a Area Tecnica</a>
+                                        <?php    
+                                            echo "</td></tr>";}
                                         ?>
                                                         </tbody>
                                                     </table>

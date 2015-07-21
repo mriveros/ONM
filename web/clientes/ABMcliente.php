@@ -62,6 +62,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         var ruc=document.getElementById("dataTables-example").rows[indi+1].cells[3].innerText;
 			var mail=document.getElementById("dataTables-example").rows[indi+1].cells[4].innerText;
                         var nro=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
+						var contacto=document.getElementById("dataTables-example").rows[indi+1].cells[6].innerText;
                         //var estado=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
                         document.getElementById("txtCodigo").value = codcliente;
                         document.getElementById("txtNombre").value = nombre;
@@ -69,6 +70,7 @@ $catego=  $_SESSION["categoria_usuario"];
 			document.getElementById("txtRuc").value = ruc;
                         document.getElementById("txtMail").value = mail;
                         document.getElementById("txtNro").value = nro;
+						document.getElementById("txtContacto").value = contacto;
 			});
 		};
 		function eliminar(codcliente){
@@ -112,6 +114,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                             <th>Ruc</th>
                                             <th>E-mail</th>
                                             <th>Numero</th>
+											<th>Contacto</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -130,6 +133,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         echo "<td>".$row1["cli_ruc"]."</td>";
                         echo "<td>".$row1["cli_mail"]."</td>";
                         echo "<td>".$row1["cli_nro"]."</td>";
+						echo "<td>".$row1["cli_contacto"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
                         
@@ -181,25 +185,31 @@ $catego=  $_SESSION["categoria_usuario"];
 					<div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Apellido</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtApellidoA" class="form-control" id="txtApellidoA" placeholder="ingrese apellido" required />
+                                            <input type="text" name="txtApellidoA" class="form-control" id="txtApellidoA" placeholder="ingrese apellido"  />
                                             </div>
 					</div>
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Ruc</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtRucA" class="form-control" id="txtRucA" placeholder="ingrese RUC o CI" required />
+                                            <input type="text" name="txtRucA" class="form-control" id="txtRucA" placeholder="ingrese RUC o CI"  />
                                             </div>
 					</div>
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">E-Mail</label>
                                             <div class="col-sm-10">
-                                            <input type="mail" name="txtMailA" class="form-control" id="txtMailA" placeholder="ingrese e-mail" required />
+                                            <input type="mail" name="txtMailA" class="form-control" id="txtMailA" placeholder="ingrese e-mail"  />
                                             </div>
 					</div>
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Numero</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNroA" class="form-control" id="txtNroA" placeholder="ingrese numero telefono" required />
+                                            <input type="text" name="txtNroA" class="form-control" id="txtNroA" placeholder="ingrese numero telefono"  />
+                                            </div>
+					</div>
+					<div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Contacto</label>
+                                            <div class="col-sm-10">
+                                            <input type="text" name="txtContactoA" class="form-control" id="txtContactoA" placeholder="ingrese un contacto"  />
                                             </div>
 					</div>
 					<div class="form-group">
@@ -244,31 +254,37 @@ $catego=  $_SESSION["categoria_usuario"];
                                             <input type="numeric" name="codigo1" class="hide" id="input000" />
                                             <label  class="col-sm-2 control-label" for="input01">Nombre</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNombre" class="form-control" id="txtNombre"  required />
+                                            <input type="text" name="txtNombre" class="form-control" id="txtNombre" placeholder="ingrese nombre" required />
                                             </div>
 					</div>
 					<div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Apellido</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtApellido" class="form-control" id="txtApellido" placeholder="ingrese apellido" required />
+                                            <input type="text" name="txtApellido" class="form-control" id="txtApellido" placeholder="ingrese apellido"  />
                                             </div>
 					</div>
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Ruc</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtRuc" class="form-control" id="txtRuc" placeholder="ingrese nombre de usuario" required />
+                                            <input type="text" name="txtRuc" class="form-control" id="txtRuc" placeholder="ingrese RUC o CI"  />
                                             </div>
 					</div>
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">E-mail</label>
                                             <div class="col-sm-10">
-                                            <input type="mail" name="txtMail" class="form-control" id="txtMail" placeholder="ingrese una contraseña" required />
+                                            <input type="mail" name="txtMail" class="form-control" id="txtMail" placeholder="ingrese un email"  />
                                             </div>
 					</div>
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Numero</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNro" class="form-control" id="txtNro" placeholder="ingrese una contraseña" required />
+                                            <input type="text" name="txtNro" class="form-control" id="txtNro" placeholder="ingrese un nro de telefono"  />
+                                            </div>
+					</div>
+					<div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Contacto</label>
+                                            <div class="col-sm-10">
+                                            <input type="text" name="txtContacto" class="form-control" id="txtContacto" placeholder="ingrese un contacto"  />
                                             </div>
 					</div>
                                         <div class="form-group">

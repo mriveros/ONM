@@ -10,17 +10,17 @@
     
     //Datos del Form Agregar
     if  (empty($_POST['txtNombreA'])){$nombreA=0;}else{ $nombreA = $_POST['txtNombreA'];}
-    if  (empty($_POST['txtApellidoA'])){$apellidoA=0;}else{ $apellidoA= $_POST['txtApellidoA'];}
-    if  (empty($_POST['txtUsernameA'])){$usernameA=0;}else{ $usernameA= $_POST['txtUsernameA'];}
-    if  (empty($_POST['txtPasswordA'])){$passwordA=0;}else{ $passwordA= $_POST['txtPasswordA'];}
+    if  (empty($_POST['txtApellidoA'])){$apellidoA='';}else{ $apellidoA= $_POST['txtApellidoA'];}
+    if  (empty($_POST['txtUsernameA'])){$usernameA='';}else{ $usernameA= $_POST['txtUsernameA'];}
+    if  (empty($_POST['txtPasswordA'])){$passwordA='';}else{ $passwordA= $_POST['txtPasswordA'];}
     if  (empty($_POST['opcionA'])){$activoA='f';}else{ $activoA= 't';}
     
     //Datos del Form Modificar
     if  (empty($_POST['txtCodigo'])){$codigoModif=0;}else{$codigoModif=$_POST['txtCodigo'];}
-    if  (empty($_POST['txtNombre'])){$nombreM=0;}else{ $nombreM = $_POST['txtNombre'];}
-    if  (empty($_POST['txtApellido'])){$apellidoM=0;}else{ $apellidoM= $_POST['txtApellido'];}
-    if  (empty($_POST['txtUsername'])){$usernameM=0;}else{ $usernameM= $_POST['txtUsername'];}
-    if  (empty($_POST['txtPassword'])){$passwordM=0;}else{ $passwordM= $_POST['txtPassword'];}
+    if  (empty($_POST['txtNombre'])){$nombreM='';}else{ $nombreM = $_POST['txtNombre'];}
+    if  (empty($_POST['txtApellido'])){$apellidoM='';}else{ $apellidoM= $_POST['txtApellido'];}
+    if  (empty($_POST['txtUsername'])){$usernameM='';}else{ $usernameM= $_POST['txtUsername'];}
+    if  (empty($_POST['txtPassword'])){$passwordM='';}else{ $passwordM= $_POST['txtPassword'];}
     if  (empty($_POST['txtOpcion'])){$activoM='f';}else{ $activoM= 't';}
     
     //DAtos para el Eliminado Logico

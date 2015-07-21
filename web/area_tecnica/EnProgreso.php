@@ -112,7 +112,8 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                             and ingdet.ins_cod=ins.ins_cod
                             and cli.cli_cod=ing.cli_cod
                             and ingdet.situacion='EN PROGRESO'
-                            and tec.tec_cod=$codtecnico";
+                            and tec.tec_cod=$codtecnico
+                            and ingdet.ing_codtecnico_retira=$codtecnico";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {

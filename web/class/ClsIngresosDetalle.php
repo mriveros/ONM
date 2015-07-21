@@ -9,15 +9,15 @@
     conexionlocal();
     
     //Datos del Form Agregar
-    if  (empty($_POST['txtCantidadA'])){$cantidadA=0;}else{ $cantidadA = $_POST['txtCantidadA'];}
-    if  (empty($_POST['txtInstrumentoA'])){$instrumentoA=0;}else{ $instrumentoA= $_POST['txtInstrumentoA'];}
-     if  (empty($_POST['txtObsA'])){$obsA=0;}else{ $obsA= $_POST['txtObsA'];}
+    if  (empty($_POST['txtCantidadA'])){$cantidadA='';}else{ $cantidadA = $_POST['txtCantidadA'];}
+    if  (empty($_POST['txtInstrumentoA'])){$instrumentoA='';}else{ $instrumentoA= $_POST['txtInstrumentoA'];}
+     if  (empty($_POST['txtObsA'])){$obsA='';}else{ $obsA= $_POST['txtObsA'];}
     
     //Datos del Form Modificar
     if  (empty($_POST['txtCodigo'])){$codigoModif=0;}else{$codigoModif=$_POST['txtCodigo'];}
-    if  (empty($_POST['txtCantidad'])){$cantidadM=0;}else{ $cantidadM = $_POST['txtCantidad'];}
-    if  (empty($_POST['idObs'])){$obsM=0;}else{ $obsM = $_POST['idObs'];}
-    if  (empty($_POST['txtInstrumento'])){$instrumentoM=0;}else{ $instrumentoM= $_POST['txtInstrumento'];}
+    if  (empty($_POST['txtCantidad'])){$cantidadM='';}else{ $cantidadM = $_POST['txtCantidad'];}
+    if  (empty($_POST['idObs'])){$obsM='';}else{ $obsM = $_POST['idObs'];}
+    if  (empty($_POST['txtInstrumento'])){$instrumentoM='';}else{ $instrumentoM= $_POST['txtInstrumento'];}
    
     
     //recupera el codigo anterior de la cabecera

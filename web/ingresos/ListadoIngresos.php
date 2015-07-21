@@ -85,7 +85,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         <form class="form-horizontal" action="ListadoDetalle.php"  method="post" role="form" >
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                                <input  type="number" name="txtCodigo" id="idCodigo" required>
+                                <input  type="hidden" name="txtCodigo" id="idCodigo" required>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="success">

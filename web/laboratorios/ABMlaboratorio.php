@@ -170,7 +170,7 @@ $catego=  $_SESSION["categoria_usuario"];
 					<div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcionA" class="form-control" id="txtDescripcionA" placeholder="ingrese descripcion" required />
+                                            <input type="text" name="txtDescripcionA" class="form-control" id="txtDescripcionA" placeholder="ingrese descripcion"  />
                                             </div>
 					</div>
 					<div class="form-group">
@@ -220,7 +220,7 @@ $catego=  $_SESSION["categoria_usuario"];
 					<div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcion" class="form-control" id="txtDescripcion" placeholder="ingrese una descripcion" required />
+                                            <input type="text" name="txtDescripcion" class="form-control" id="txtDescripcion" placeholder="ingrese una descripcion"  />
                                             </div>
 					</div>
                                         <div class="form-group">

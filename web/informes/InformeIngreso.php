@@ -40,12 +40,12 @@ function Header()
     $this->text(37,29,"ORGANISMO NACIONAL DE METROLOGIA");
     $this->text(37,34,"Telefax: (595921) 295 408 e-mail: metrologia@intn.gov.py");
     //-----------------------TRAEMOS LOS DATOS DE CABECERA----------------------
-    $conectate=pg_connect("host=localhost port=5434 dbname=onmworkflow user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select max(ing_cod) as codigo from ingreso");
     $codingreso=pg_result($consulta,0,'codigo');
     $consulta=pg_exec($conectate,"select ing.ing_cod, ing.ing_proforma,to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,
-    cli.cli_nom||' '||cli.cli_ape as cliente, to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
+    cli.cli_nom||' '||cli.cli_ape as cliente,cli.cli_contacto, to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
     from ingreso ing, clientes cli
     where ing.cli_cod=cli.cli_cod
     and ing.ing_cod=$codingreso");
@@ -56,6 +56,7 @@ function Header()
     $cliente=pg_result($consulta,0,'cliente');
     $ruc=pg_result($consulta,0,'cli_ruc');
     $numero=pg_result($consulta,0,'cli_nro');
+	$contacto=pg_result($consulta,0,'cli_contacto');
     $mail=pg_result($consulta,0,'cli_mail');
     //--------------------------------------------------------------------------
     $this->Ln(30);
@@ -75,13 +76,13 @@ function Header()
     $this->SetFont('Arial','',12);
     $this->text(10,59,'RAZON SOCIAL:');//Titulo
     $this->text(45,59,$cliente);
-    $this->text(10,65,'RJC:');//Titulo
-    
+    $this->text(10,65,'RUC:');//Titulo
+    $this->text(40,65,$ruc);
     $this->text(10,70,'CONTACTO:');//Titulo
-    
+    $this->text(45,70,$contacto);
     $this->text(10,75,'FECHA ENTREGA:');
     $this->text(50,75,$fechaentrega);
-    $this->text(130,59,'PROFORMA Nro.:');
+    $this->text(130,59,'CONTROL Nro.:');
     $this->text(170,59,$proforma);
     $this->text(130,65,'TEL/FAX:');//Titulo
     $this->text(150,65,$numero);
@@ -101,7 +102,7 @@ $pdf->SetTextColor(0);
 
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=localhost port=5434 dbname=onmworkflow user=postgres password=postgres"
+$conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 $consulta=pg_exec($conectate,"select max(ing_cod) as codigo from ingreso");
 $codingreso=pg_result($consulta,0,'codigo');
