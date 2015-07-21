@@ -103,7 +103,7 @@ $catego=  $_SESSION["categoria_usuario"];
                     <?php
                     $query = "select ing.ing_cod,ing.ing_proforma,ing.cli_cod,cli.cli_nom || ' '|| cli.cli_ape as nombres,
                             to_char(ing.fecha_recepcion,'DD/MM/YYYY')as fecha_recepcion,to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,ing.estado,ing.situacion,ing.ing_obs 
-                            from ingreso ing, clientes cli where cli.cli_cod=ing.cli_cod ";
+                            from ingreso ing, clientes cli where cli.cli_cod=ing.cli_cod and situacion <> 'ENTREGADO'";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {

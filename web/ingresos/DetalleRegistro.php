@@ -99,7 +99,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                         if  (empty($_POST['txtCodigo'])){$codigo=0;}else{ $codigo = $_POST['txtCodigo'];}
                                         $query = "select ingdet.ing_coddet, ing.ing_cod,lab.lab_nom, ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,to_char(ins.fecha,'DD/MM/YYYY')as fecha,ins.estado 
                                         from instrumentos ins, laboratorios lab,ingreso ing,ingreso_detalle ingdet 
-                                        where ins.lab_cod=lab.lab_cod  and ing.ing_cod=ingdet.ing_cod and ingdet.situacion <> 'ANULADO'
+                                        where ins.lab_cod=lab.lab_cod  and ing.ing_cod=ingdet.ing_cod and ingdet.situacion <> 'ANULADO' and ingdet.situacion <> 'ENTREGADO'
                                         and ingdet.ins_cod=ins.ins_cod and ing.ing_cod=$codigo " ;
                                         $result = pg_query($query) or die ("Error al realizar la consulta");
                                         while($row1 = pg_fetch_array($result))
@@ -130,7 +130,6 @@ $catego=  $_SESSION["categoria_usuario"];
                                     <!-- /.col-lg-12 -->
                                 </div>	
             <!-- /.row -->
-            
         </div>
         <!-- /#page-wrapper -->
     <!-- /#wrapper -->

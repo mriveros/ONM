@@ -52,11 +52,24 @@ $codtecnico=  $_SESSION["codigo_usuario"];
     });
     </script>
     <script type="text/javascript">
-		function cambiarEstado(coddetalle){
-                    $.ajax({type: "GET",url:"../class/ClsAreaTecnicaRecibidos.php",data:"coddetalle="+coddetalle,success:function(msg){
-                            $("#").fadeIn("slow",function(){
-                            $("#").html(msg);
-                            })}})
+		function modificarEstado(coddetalle){
+                    var codigotecnico=document.getElementById("Codigo").value;
+                    if(codigotecnico=="")
+                    {
+                        codigotecnico=1;
+                    }
+                    $.ajax({type: "GET",url:"../class/ClsListadoDetalleEntrega.php",data:"coddetalle="+coddetalle+"&codtecnico="+codigotecnico,success:function(msg){
+                    $("#").fadeIn("slow",function(){
+                    $("#").html(msg);
+                    })}})
+                    window.location.reload();    
+		};
+		function Redirigir(){
+			window.location.reload();
+		};
+                function asignarCodigo(){
+                  
+                    document.getElementById("Codigo").value =document.getElementById("txtTecnicoA").value;
 		};
 	</script>	
 </head>
@@ -81,9 +94,11 @@ $codtecnico=  $_SESSION["codigo_usuario"];
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
+                       
                         <div class="panel-heading">
                             Listado de Instrumentos Calibrados
                         </div>
+                         <input type="hidden" name='txtCodigo' id='Codigo'>
                         <!-- /.panel-heading -->
                         <form class="form-horizontal"   method="post" role="form" >
                         <div class="panel-body">
@@ -92,15 +107,17 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
-                                            <th>Cantidad</th>
                                             <th>Instrumento</th>
+                                             <th>Observación</th>
                                             <th>Fecha Entrega</th>
                                             <th>Situacion</th>
+                                            <th>Entregado por..</th>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY') as 
+                    $query = "select ingdet.ing_coddet,ingdet.ing_obs,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY') as 
                             fecha_entrega,ingdet.situacion 
                             from tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, 
                             laboratorios lab, instrumentos ins
@@ -115,14 +132,26 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                     while($row1 = pg_fetch_array($result))
                     {
                         echo "<tr><td>".$row1["ing_coddet"]."</td>";
-                        echo "<td>".$row1["ing_cant"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
+                        echo "<td>".$row1["ing_obs"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";
                         echo "<td>".$row1["situacion"]."</td>";
-                        echo "</tr>";
-                    }
-                    pg_free_result($result);
-                    ?>
+                        echo '<td><select onChange="asignarCodigo()" name="txtTecnicoA" class="form-control" id="txtTecnicoA" required>';
+                        //esto es para mostrar un select que trae datos de la BDD
+                        conexionlocal();
+                        $query = "Select tec_cod,tec_nom||' '|| tec_ape from tecnicos where estado='t'";
+                        $resultadoSelect = pg_query($query);
+                        while ($row = pg_fetch_row($resultadoSelect)) {
+                            echo "<option value=" . $row[0] . ">";
+                            echo $row[1];
+                            echo "</option>";
+                                                    }
+                            echo '</select></td><td onclick="javascript:location.reload()">';
+                            ?>
+                            <a onclick="modificarEstado(<?php echo $row1['ing_coddet'];?>)" class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalprueba" role="button">Asignar</a>
+                            <?php    
+                            echo "</td></tr>";}
+                            ?>
                                     </tbody>
                                 </table>
                             </div>		

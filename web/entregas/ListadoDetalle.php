@@ -87,6 +87,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                                             <tr class="success">
                                                                 <th>Codigo</th>
                                                                 <th>Instrumento</th>
+                                                                <th>Observación</th>
                                                                 <th>Fecha Entrega Prevista</th>
                                                                 <th>Estado</th>
                                                                 <th>Accion</th>
@@ -96,10 +97,10 @@ $catego=  $_SESSION["categoria_usuario"];
                                         <?php
                                        
                                         if  (empty($_POST['txtCodigo'])){$codigo=0;}else{ $codigo = $_POST['txtCodigo'];}
-                                        $query = "select ingdet.ing_coddet,ingdet.ing_cant, ing.ing_cod, ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,to_char(ins.fecha,'DD/MM/YYYY') as fecha,ins.estado 
+                                        $query = "select ingdet.ing_coddet,ingdet.ing_cant,ingdet.ing_obs ,ing.ing_cod, ins.ins_cod,ins.ins_nom,ins.ins_des,lab.lab_nom,to_char(ins.fecha,'DD/MM/YYYY') as fecha,ins.estado 
                                         from instrumentos ins, laboratorios lab,ingreso ing,ingreso_detalle ingdet 
                                         where ins.lab_cod=lab.lab_cod  and ing.ing_cod=ingdet.ing_cod
-                                        and ingdet.ins_cod=ins.ins_cod and ing.ing_cod=$codigo and ingdet.situacion='TERMINADO'" ;
+                                        and ingdet.ins_cod=ins.ins_cod and ing.ing_cod=$codigo and ingdet.situacion='A ENTREGAR'" ;
                                         $result = pg_query($query) or die ("Error al realizar la consulta");
                                         while($row1 = pg_fetch_array($result))
                                         {
@@ -107,6 +108,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                             if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
                                             echo "<tr><td>".$row1["ing_coddet"]."</td>";
                                             echo "<td>".$row1["ins_nom"]."</td>";
+                                            echo "<td>".$row1["ing_obs"]."</td>";
                                             echo "<td>".$row1["fecha"]."</td>";
                                             echo "<td>".$estado."</td>";
                                             echo "<td>";?>
