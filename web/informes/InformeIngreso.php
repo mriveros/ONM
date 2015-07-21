@@ -44,8 +44,8 @@ function Header()
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select max(ing_cod) as codigo from ingreso");
     $codingreso=pg_result($consulta,0,'codigo');
-    $consulta=pg_exec($conectate,"select ing.ing_cod, ing.ing_proforma,to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,
-    cli.cli_nom||' '||cli.cli_ape as cliente,cli.cli_contacto, to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
+    $consulta=pg_exec($conectate,"select ing.ing_cod,cli.cli_contacto ,ing.ing_proforma,to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,
+    cli.cli_nom||' '||cli.cli_ape as cliente, to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
     from ingreso ing, clientes cli
     where ing.cli_cod=cli.cli_cod
     and ing.ing_cod=$codingreso");
@@ -58,6 +58,7 @@ function Header()
     $numero=pg_result($consulta,0,'cli_nro');
 	$contacto=pg_result($consulta,0,'cli_contacto');
     $mail=pg_result($consulta,0,'cli_mail');
+    $contacto=pg_result($consulta,0,'cli_contacto');
     //--------------------------------------------------------------------------
     $this->Ln(30);
 	$this->SetDrawColor(0,0,0);
@@ -77,9 +78,10 @@ function Header()
     $this->text(10,59,'RAZON SOCIAL:');//Titulo
     $this->text(45,59,$cliente);
     $this->text(10,65,'RUC:');//Titulo
+    $this->text(45,65,$ruc);//Titulo
     $this->text(40,65,$ruc);
     $this->text(10,70,'CONTACTO:');//Titulo
-    $this->text(45,70,$contacto);
+    $this->text(45,65,$contacto);//Titulo
     $this->text(10,75,'FECHA ENTREGA:');
     $this->text(50,75,$fechaentrega);
     $this->text(130,59,'CONTROL Nro.:');

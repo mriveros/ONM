@@ -42,13 +42,13 @@ function Header()
     //-----------------------TRAEMOS LOS DATOS DE CABECERA----------------------
     $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-    //if  (empty($_GET['codigo'])){$codigodetalle=0;}else{$codigodetalle=$_GET['codigo'];}
-    if  (empty($_POST['txtCodigo'])){$codigo=0;}else{$codigo=$_POST['txtCodigo'];}
-    $consulta=pg_exec($conectate,"select ing.ing_cod, ing.ing_proforma,to_char(now(),'DD/MM/YYYY') as fecha_recepcion,
+    $consulta=pg_exec($conectate,"select max(ing_cod) as codigo from ingreso");
+    $codingreso=pg_result($consulta,0,'codigo');
+    $consulta=pg_exec($conectate,"select ing.ing_cod,cli.cli_contacto ,ing.ing_proforma,to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,
     cli.cli_nom||' '||cli.cli_ape as cliente, to_char(now(),'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
     from ingreso ing, clientes cli
     where ing.cli_cod=cli.cli_cod
-    and ing.ing_cod=$codigo");
+    and ing.ing_cod=$codingreso");
     $codingreso=pg_result($consulta,0,'ing_cod');
     $proforma=pg_result($consulta,0,'ing_proforma');
     $fecha=pg_result($consulta,0,'fecha_recepcion');
@@ -57,6 +57,7 @@ function Header()
     $ruc=pg_result($consulta,0,'cli_ruc');
     $numero=pg_result($consulta,0,'cli_nro');
     $mail=pg_result($consulta,0,'cli_mail');
+    $contacto=pg_result($consulta,0,'cli_contacto');
     //--------------------------------------------------------------------------
     $this->Ln(30);
 	$this->SetDrawColor(0,0,0);
@@ -65,27 +66,27 @@ function Header()
 
     //table header CABECERA        
     $this->SetFont('Arial','B',12);
-    $this->SetTitle('LISTADO DE ENTREGAS');
+    $this->SetTitle('LISTADO DE INGRESOS');
     $this->text(160,39,utf8_decode('Nº:'));
     $this->text(175,39,$codingreso);
     
-    $this->text(160,44,'Fecha:');//Titulo
+    $this->text(160,44,'Fecha:');
     $this->text(175,44,$fecha);
-    $this->text(55,50,'CONTROL DE RETIRO DE INSTRUMENTOS O EQUIPOS');//Titulo
+    $this->text(55,50,'CONTROL DE INGRESO DE INSTRUMENTOS O EQUIPOS');
     $this->SetFont('Arial','',12);
-    $this->text(10,59,'RAZON SOCIAL:');//Titulo
+    $this->text(10,59,'RAZON SOCIAL:');
     $this->text(45,59,$cliente);
-    $this->text(10,65,'RJC:');//Titulo
-    
-    $this->text(10,70,'CONTACTO:');//Titulo
-    
+    $this->text(10,65,'RUC:');
+    $this->text(45,65,$ruc);
+    $this->text(10,70,'CONTACTO:');
+    $this->text(45,65,$contacto);
     $this->text(10,75,'FECHA ENTREGA:');
     $this->text(50,75,$fechaentrega);
     $this->text(130,59,'PROFORMA Nro.:');
     $this->text(170,59,$proforma);
-    $this->text(130,65,'TEL/FAX:');//Titulo
+    $this->text(130,65,'TEL/FAX:');
     $this->text(150,65,$numero);
-    $this->text(130,70,'E-mail:');//Titulo
+    $this->text(130,70,'E-mail:');
     $this->text(150,70,$mail);
     
     
