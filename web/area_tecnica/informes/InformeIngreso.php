@@ -56,7 +56,7 @@ function Header()
     $cliente=pg_result($consulta,0,'cliente');
     $ruc=pg_result($consulta,0,'cli_ruc');
     $numero=pg_result($consulta,0,'cli_nro');
-    $contacto=pg_result($consulta,0,'cli_contacto');
+	$contacto=pg_result($consulta,0,'cli_contacto');
     $mail=pg_result($consulta,0,'cli_mail');
     $contacto=pg_result($consulta,0,'cli_contacto');
     //--------------------------------------------------------------------------

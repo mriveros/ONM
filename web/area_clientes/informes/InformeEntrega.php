@@ -11,7 +11,7 @@ class PDF extends FPDF{
 function Footer()
 {
         $this->text(40,200,"................................................");
-        $this->text(40,206,"Recibi Conforme ONM-INTN");
+        $this->text(40,206,"Funcionario ONM-INTN");
         $this->text(128,200,"...............................................");
         $this->text(140,206,utf8_decode("Usuario - C. I. P. Nº"));
 	$this->SetDrawColor(0,0,0);
@@ -45,7 +45,7 @@ function Header()
     $consulta=pg_exec($conectate,"select max(ing_cod) as codigo from ingreso");
     $codingreso=pg_result($consulta,0,'codigo');
     $consulta=pg_exec($conectate,"select ing.ing_cod,cli.cli_contacto ,ing.ing_proforma,to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,
-    cli.cli_nom||' '||cli.cli_ape as cliente, to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
+    cli.cli_nom||' '||cli.cli_ape as cliente, to_char(now(),'DD/MM/YYYY') as fecha_entrega,cli.cli_mail,cli.cli_ruc,cli.cli_nro 
     from ingreso ing, clientes cli
     where ing.cli_cod=cli.cli_cod
     and ing.ing_cod=$codingreso");
@@ -56,7 +56,6 @@ function Header()
     $cliente=pg_result($consulta,0,'cliente');
     $ruc=pg_result($consulta,0,'cli_ruc');
     $numero=pg_result($consulta,0,'cli_nro');
-    $contacto=pg_result($consulta,0,'cli_contacto');
     $mail=pg_result($consulta,0,'cli_mail');
     $contacto=pg_result($consulta,0,'cli_contacto');
     //--------------------------------------------------------------------------
@@ -71,24 +70,23 @@ function Header()
     $this->text(160,39,utf8_decode('Nº:'));
     $this->text(175,39,$codingreso);
     
-    $this->text(160,44,'Fecha:');//Titulo
+    $this->text(160,44,'Fecha:');
     $this->text(175,44,$fecha);
-    $this->text(55,50,'CONTROL DE INGRESO DE INSTRUMENTOS O EQUIPOS');//Titulo
+    $this->text(55,50,'CONTROL DE INGRESO DE INSTRUMENTOS O EQUIPOS');
     $this->SetFont('Arial','',12);
-    $this->text(10,59,'RAZON SOCIAL:');//Titulo
+    $this->text(10,59,'RAZON SOCIAL:');
     $this->text(45,59,$cliente);
-    $this->text(10,65,'RUC:');//Titulo
-    $this->text(45,65,$ruc);//Titulo
-    $this->text(40,65,$ruc);
-    $this->text(10,70,'CONTACTO:');//Titulo
-    $this->text(45,65,$contacto);//Titulo
+    $this->text(10,65,'RUC:');
+    $this->text(45,65,$ruc);
+    $this->text(10,70,'CONTACTO:');
+    $this->text(45,65,$contacto);
     $this->text(10,75,'FECHA ENTREGA:');
     $this->text(50,75,$fechaentrega);
-    $this->text(130,59,'CONTROL Nro.:');
+    $this->text(130,59,'PROFORMA Nro.:');
     $this->text(170,59,$proforma);
-    $this->text(130,65,'TEL/FAX:');//Titulo
+    $this->text(130,65,'TEL/FAX:');
     $this->text(150,65,$numero);
-    $this->text(130,70,'E-mail:');//Titulo
+    $this->text(130,70,'E-mail:');
     $this->text(150,70,$mail);
     
     
@@ -106,13 +104,15 @@ $pdf->SetTextColor(0);
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-$consulta=pg_exec($conectate,"select max(ing_cod) as codigo from ingreso");
-$codingreso=pg_result($consulta,0,'codigo');
-$consulta=pg_exec($conectate,"select  distinct(ins.ins_nom) as instrumento, ingdet.ing_cant,ingdet.ing_obs
+
+if  (empty($_POST['txtCodigo'])){$codigo=0;}else{$codigo=$_POST['txtCodigo'];}
+$consulta=pg_exec($conectate,"select  ins.ins_nom,1 as cantidad,ingdet.ing_obs,ingdet.ing_coddet
 from ingreso ing, ingreso_detalle ingdet, instrumentos ins
 where ing.ing_cod=ingdet.ing_cod
 and ins.ins_cod=ingdet.ins_cod
-and ing.ing_cod=$codingreso");
+and ingdet.ing_estado='f'
+and ingdet.situacion='ENTREGADO'
+and ing.ing_cod=$codigo");
 $numregs=pg_numrows($consulta);
 //------------------------------------------------------------------------------
 
@@ -127,16 +127,23 @@ $i=0;
 
 while($i<$numregs)
 {   
-    $cantidad=pg_result($consulta,$i,'ing_cant');
-    $instrumento=pg_result($consulta,$i,'instrumento');
+    $cantidad=pg_result($consulta,$i,'cantidad');
+    $instrumento=pg_result($consulta,$i,'ins_nom');
     $observacion=pg_result($consulta,$i,'ing_obs');
+    $codigodetalle=pg_result($consulta,$i,'ing_coddet');
     $pdf->Cell(25,5,$cantidad,1,0,'C',$fill);
     $pdf->Cell(60,5,$instrumento,1,0,'L',$fill);
     $pdf->Cell(95,5,$observacion,1,1,'L',$fill);
     $fill=!$fill;
     $i++;
+    $actualizar=pg_exec($conectate,"update ingreso_detalle set ing_estado='t' where ing_coddet=$codigodetalle");
 }
-
+$actualizar=pg_exec($conectate,"select COALESCE(sum(ing_coddet),0) as detalle_si_no from ingreso_detalle where ing_estado='f' and ing_cod=$codigo");
+$cantidad=pg_result($actualizar,0,'detalle_si_no');
+if ($cantidad==0)
+{
+    $actualizar=pg_exec($conectate,"update ingreso set estado='f',situacion='ENTREGADO' where ing_cod=$codigo");
+}
 //Add a rectangle, a line, a logo and some text
 /*
 $pdf->Rect(5,5,170,80);
@@ -149,4 +156,5 @@ $pdf->Cell(170,5,'PDF gerado via PHP acessando banco de dados - Por Ribamar FS',
 */
 $pdf->Output();
 $pdf->Close();
+
 ?>
