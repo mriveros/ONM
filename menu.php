@@ -29,8 +29,8 @@
 		//include("../asistencia/bd/conectar.php");
 		//$catego=$_SESSION['usercate'];
 		echo "<script>";
-		echo 'function pageprinci() {window.location.assign("http://localhost/app/asistencia/paginas/principal.php")}';
-		echo 'function pageabmdepen() {window.location.assign("http://localhost/app/asistencia/paginas/abm/abmdependencia.php")}';
+		echo 'function pageprinci() {window.location.assign("http://192.168.0.99/web/asistencia/paginas/principal.php")}';
+		echo 'function pageabmdepen() {window.location.assign("http://192.168.0.99/web/asistencia/paginas/abm/abmdependencia.php")}';
 		echo "</script>";
 	?>
 

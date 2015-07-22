@@ -40,7 +40,7 @@ function Header()
     $this->text(37,29,"ORGANISMO NACIONAL DE METROLOGIA");
     $this->text(37,34,"Telefax: (595921) 295 408 e-mail: metrologia@intn.gov.py");
     //-----------------------TRAEMOS LOS DATOS DE CABECERA----------------------
-    $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
+    $conectate=pg_connect("host=192.168.0.99  port=5432 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select max(ing_cod) as codigo from ingreso");
     $codingreso=pg_result($consulta,0,'codigo');
@@ -104,7 +104,7 @@ $pdf->SetTextColor(0);
 
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
+$conectate=pg_connect("host=192.168.0.99  port=5432 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 $consulta=pg_exec($conectate,"select max(ing_cod) as codigo from ingreso");
 $codingreso=pg_result($consulta,0,'codigo');

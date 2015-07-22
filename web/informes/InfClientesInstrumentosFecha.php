@@ -50,7 +50,7 @@ function Header()
     if  (empty($_POST['txtDesdeFecha'])){$desde='';}else{ $desde= $_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$hasta='';}else{ $hasta= $_POST['txtHastaFecha'];}
     
-    $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
+    $conectate=pg_connect("host=192.168.0.99  port=5432 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select cli_nom || ' '|| cli_ape as cliente from clientes where estado='t' and cli_cod=$codcliente");
     $cliente=pg_result($consulta,0,'cliente');
@@ -97,7 +97,7 @@ $i=0;
 $pdf->SetFont('Arial','',10);
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
- $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
+ $conectate=pg_connect("host=192.168.0.99  port=5432 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 
 $consulta=pg_exec($conectate,"select ing.ing_proforma,ingdet.ing_coddet,ins.ins_nom,ingdet.ing_obs,to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,

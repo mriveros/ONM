@@ -121,7 +121,7 @@
                 </li>
                 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="logout.php">
                         <i class="fa fa-user fa-fw"></i> <?php echo "USUARIO"//$_SESSION['usernom']." ".$_SESSION['userape']; ?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
@@ -149,10 +149,10 @@
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA TECNICA<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONM/web/login_tecnicos/acceso.html">Login</a>
-                                    <a href="http://localhost/app/ONM/web/area_tecnica/TrabajosRecibidos.php">Trabajos Recibidos</a>
-                                    <a href="http://localhost/app/ONM/web/area_tecnica/EnProgreso.php">Trabajos En Progreso</a>
-                                    <a href="http://localhost/app/ONM/web/area_tecnica/Terminados.php">Trabajos Terminados</a>
+                                    <a href="http://192.168.0.99/web/ONM/web/login_tecnicos/acceso.html">Login</a>
+                                    <a href="http://192.168.0.99/web/ONM/web/area_tecnica/TrabajosRecibidos.php">Trabajos Recibidos</a>
+                                    <a href="http://192.168.0.99/web/ONM/web/area_tecnica/EnProgreso.php">Trabajos En Progreso</a>
+                                    <a href="http://192.168.0.99/web/ONM/web/area_tecnica/Terminados.php">Trabajos Terminados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -161,10 +161,10 @@
                             <a href="#"><i class="fa  fa-bar-chart-o"></i> ESTADISTICAS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/app/ONM/web/area_tecnica/informes/frmClientesInstrumentosFecha.php">Instrumentos Calibrados por Fecha</a>
+                                    <a href="http://192.168.0.99/web/ONM/web/area_tecnica/informes/frmClientesInstrumentosFecha.php">Instrumentos Calibrados por Fecha</a>
                                 </li>
                                 <li>
-                                    <a href="http://localhost/app/ONM/web/area_tecnica/informes/frmRankingCalibraciones.php">Ranking de trabajo por Fecha</a>
+                                    <a href="http://192.168.0.99/web/ONM/web/area_tecnica/informes/frmRankingCalibraciones.php">Ranking de trabajo por Fecha</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

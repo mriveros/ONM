@@ -27,7 +27,7 @@ $pwd=$_REQUEST['clave'];
 	{
 		echo '<script type="text/javascript">
                          alert("Nombre de Usuario o Password no valido..!");
-			 window.location="http://localhost/app/ONM/login/acceso.html";
+			 window.location="http://192.168.0.99/web/ONM/login/acceso.html";
                       </script>';
 	}
 	else
@@ -36,7 +36,7 @@ $pwd=$_REQUEST['clave'];
             $_SESSION["codigo_usuario"] = $row['usu_cod'];
             $_SESSION["categoria_usuario"] = $row['usu_cat'];
             
-            header("Location:http://localhost/app/ONM/web/menu.php");
+            header("Location:http://192.168.0.99/web/ONM/web/menu.php");
 	} 
 	exit;
 ?>
