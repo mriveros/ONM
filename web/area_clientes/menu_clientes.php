@@ -150,10 +150,10 @@
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA CLIENTES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                   <a href="http://192.168.0.99/web/ONM/web/login_clientes/acceso.html">Login</a>
-                                   <a href="http://192.168.0.99/web/ONM/web/area_clientes/EnProgreso.php">En Progreso</a>
-                                   <a href="http://192.168.0.99/web/ONM/web/area_clientes/Terminados.php">Instrumentos Calibrados</a>
-                                   <a href="http://192.168.0.99/web/ONM/web/area_clientes/Entregados.php">Instrumentos Entregados</a>
+                                   <a href="http://localhost/app/ONM/web/login_clientes/acceso.html">Login</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/EnProgreso.php">En Progreso</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/Terminados.php">Instrumentos Calibrados</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/Entregados.php">Instrumentos Entregados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

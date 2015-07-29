@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-header("Location:http://192.168.0.99/web/ONM/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 ?>
 <!DOCTYPE html>
@@ -64,7 +64,7 @@ $catego=  $_SESSION["categoria_usuario"];
 			});
 		};
 		function Redirigir(){
-			window.location="http://192.168.0.99/web/ONM/web/menu.php";
+			window.location="http://localhost/app/ONM/web/menu.php";
 		};
 	</script>
 </head>

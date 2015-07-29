@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["codigo_usuario"]))
-header("Location:http://192.168.0.99/web/ONM/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $codtecnico=$_SESSION["codigo_usuario"];
 ?>
 <?php
@@ -93,7 +93,7 @@ $i=0;
 $pdf->SetFont('Arial','',8);
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
- $conectate=pg_connect("host=192.168.0.99  port=5432 dbname=onmworkflow user=postgres password=postgres"
+ $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 
 $consulta=pg_exec($conectate,"select ing.ing_proforma,cli.cli_nom||' '||cli.cli_ape as cliente,ingdet.ing_coddet,ins.ins_nom,ingdet.ing_obs,to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,

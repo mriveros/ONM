@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["codigo_usuario"]))
-header("Location:http://192.168.0.99/web/ONM/login/acceso.html");
+header("Location:http://localhost/app/ONM/login/acceso.html");
 $codcliente=  $_SESSION["codigo_usuario"];
 ?>
 <!DOCTYPE html>

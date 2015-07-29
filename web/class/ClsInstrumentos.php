@@ -30,7 +30,7 @@
             if(func_existeDato($nombreA, 'laboratorios', 'lab_nom')==true){
                 echo '<script type="text/javascript">
 		alert("El Instrumento ya existe. Intente ingresar otro Instrumento");
-                window.location="http://192.168.0.99/web/ONM/web/instrumentos/ABMinstrumento.php";
+                window.location="http://localhost/app/ONM/web/instrumentos/ABMinstrumento.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -39,7 +39,7 @@
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://192.168.0.99/web/ONM/web/instrumentos/ABMinstrumento.php");
+                header("Refresh:0; url=http://localhost/app/ONM/web/instrumentos/ABMinstrumento.php");
                 }
             }
         //si es Modificar    
@@ -47,10 +47,10 @@
             
             pg_query("update instrumentos set ins_nom='$nombreM',ins_des= '$descripcionM',lab_cod=$laboratorioM,estado='$estadoM' WHERE ins_cod=$codigoModif");
             $query = '';
-            header("Refresh:0; url=http://192.168.0.99/web/ONM/web/instrumentos/ABMinstrumento.php");
+            header("Refresh:0; url=http://localhost/app/ONM/web/instrumentos/ABMinstrumento.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update instrumentos set estado='f' WHERE ins_cod=$codigoElim");
-            header("Refresh:0; url=http://192.168.0.99/web/ONM/web/instrumentos/ABMinstrumento.php");
+            header("Refresh:0; url=http://localhost/app/ONM/web/instrumentos/ABMinstrumento.php");
 	}

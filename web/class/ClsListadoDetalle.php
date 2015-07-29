@@ -7,5 +7,5 @@
  
 $query = "update ingreso_detalle set situacion='EN PROGRESO',ing_codtecnico_retira=$codigotecnico where ing_coddet=$codigodetalle";
 pg_query($query)or die('Error al realizar la carga');
-header("Refresh:0; url=http://192.168.0.99/web/ONM/web/ingresos/ListadoDetalle.php");
+header("Refresh:0; url=http://localhost/app/ONM/web/ingresos/ListadoDetalle.php");
  ?>
