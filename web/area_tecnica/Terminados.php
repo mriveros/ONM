@@ -93,7 +93,8 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
-                                            <th>Cliente</th>
+											<th>Cliente</th>
+                                            <th>Cantidad</th>
                                             <th>Instrumento</th>
                                             <th>Fecha Entrega</th>
                                             <th>Fecha Terminacion</th>
@@ -102,7 +103,7 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,cli.cli_nom|| ' '||cli.cli_ape as nombres,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,to_char(ingdet.fecha_trabajo,'DD/MM/YYYY')as fecha_trabajo,ingdet.situacion 
+                    $query = "select ingdet.ing_coddet,ingdet.ing_cant,ins.ins_nom,cli.cli_nom|| ' '||cli.cli_ape as cliente,to_char(ing.fecha_entrega,'DD/MM/YYYY')as fecha_entrega,to_char(ingdet.fecha_trabajo,'DD/MM/YYYY')as fecha_trabajo,ingdet.situacion 
                             from tecnicos_laboratorios teclab,clientes cli,tecnicos tec,ingreso ing, ingreso_detalle ingdet, 
                             laboratorios lab, instrumentos ins
                             where ins.lab_cod=lab.lab_cod 
@@ -117,6 +118,7 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                     while($row1 = pg_fetch_array($result))
                     {
                         echo "<tr><td>".$row1["ing_coddet"]."</td>";
+						 echo "<td>".$row1["cliente"]."</td>";
                         echo "<td>".$row1["ing_cant"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";

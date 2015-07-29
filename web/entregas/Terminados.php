@@ -107,6 +107,7 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th>Codigo</th>
+											 <th>Cliente</th>
                                             <th>Instrumento</th>
                                              <th>Observación</th>
                                             <th>Fecha Entrega</th>
@@ -117,21 +118,23 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ingdet.ing_coddet,ingdet.ing_obs,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY') as 
+                    $query = "select ingdet.ing_coddet,cli.cli_nom||' '||cli.cli_ape as cliente,ingdet.ing_obs,ingdet.ing_cant,ins.ins_nom,to_char(ing.fecha_entrega,'DD/MM/YYYY') as 
                             fecha_entrega,ingdet.situacion 
-                            from tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, 
+                            from tecnicos_laboratorios teclab,tecnicos tec,ingreso ing, ingreso_detalle ingdet, clientes cli,
                             laboratorios lab, instrumentos ins
                             where ins.lab_cod=lab.lab_cod 
                             and  teclab.lab_cod=lab.lab_cod 
                             and teclab.tec_cod=tec.tec_cod 
                             and ing.ing_cod=ingdet.ing_cod
                             and ingdet.ins_cod=ins.ins_cod
+							and cli.cli_cod=ing.cli_cod
                             and ingdet.situacion='TERMINADO'
                             and tec.tec_cod=$codtecnico order by fecha_entrega desc";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
                         echo "<tr><td>".$row1["ing_coddet"]."</td>";
+						echo "<td>".$row1["cliente"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["ing_obs"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";
