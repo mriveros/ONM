@@ -133,8 +133,8 @@ $codtecnico=  $_SESSION["codigo_usuario"];
                     while($row1 = pg_fetch_array($result))
                     {
                         echo "<tr><td>".$row1["ing_coddet"]."</td>";
-						echo "<td>".$row1["ing_proforma"]."</td>";
-						echo "<td>".$row1["cliente"]."</td>";
+			echo "<td>".$row1["ing_proforma"]."</td>";
+			echo "<td>".$row1["cliente"]."</td>";
                         echo "<td>".$row1["ins_nom"]."</td>";
                         echo "<td>".$row1["ing_obs"]."</td>";
                         echo "<td>".$row1["fecha_entrega"]."</td>";
