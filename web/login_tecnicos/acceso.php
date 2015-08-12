@@ -27,7 +27,7 @@ $ci=$_REQUEST['ci'];
 	{
 		echo '<script type="text/javascript">
                          alert("Datos erroneos ingresados..!");
-			 window.location="http://192.168.0.99/web/ONM/login_tecnicos/acceso.html";
+			 window.location="http://localhost/app/ONM/login_tecnicos/acceso.html";
                       </script>';
 	}
 	else
@@ -36,7 +36,7 @@ $ci=$_REQUEST['ci'];
             $_SESSION["codigo_usuario"] = $row['tec_cod'];
             //$_SESSION["categoria_usuario"] = $row['usu_cat'];
             
-            header("Location:http://192.168.0.99/web/ONM/web/area_tecnica/menu_tecnicos.php");
+            header("Location:http://localhost/app/ONM/web/area_tecnica/menu_tecnicos.php");
 	} 
 	exit;
 ?>

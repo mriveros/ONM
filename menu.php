@@ -8,22 +8,32 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Bootstrap Core CSS -->
-    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="../../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
      <!-- jQuery -->
-    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="../../dist/js/sb-admin-2.js"></script>
-    <title>ONMWORK-CONTROL</title>
+    <script src="dist/js/sb-admin-2.js"></script>
+    <title>ONM WORKCONTROL</title>
+
+	<?php
+		//include("../asistencia/bd/conectar.php");
+		//$catego=$_SESSION['usercate'];
+		echo "<script>";
+		echo 'function pageprinci() {window.location.assign("http://localhost/app/asistencia/paginas/principal.php")}';
+		echo 'function pageabmdepen() {window.location.assign("http://localhost/app/asistencia/paginas/abm/abmdependencia.php")}';
+		echo "</script>";
+	?>
+
 </head>
 
 <body>
@@ -36,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Sistema de Control- Calibracion de Instrumentos</a>
+                <a class="navbar-brand" href="#">Sistema de Control para Calibracion de Equipos ONM</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -130,67 +140,90 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuracion</a>
                         </li>
                         <li class="divider"></li>
-			<li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
+			<li><a href="../paginas/logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
-          
+            <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#" value="Load new document" onclick="pageprinci()"><i class="fa fa-dashboard fa-fw"></i>Menu Principal</a>
+                            <a href="#" value="Load new document" onclick="pageprinci()"><i class="fa fa-dashboard fa-fw"></i> Principal - Resumen</a>
                         </li>
-                        
-                        <li>
-                            <a href="#"><i class="fa  fa-arrow-left"></i> AREA CLIENTES<span class="fa arrow"></span></a>
+			<li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Actividades<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                   <a href="http://localhost/app/ONM/web/login_clientes/acceso.html">Login</a>
-                                   <a href="http://localhost/app/ONM/web/area_clientes/EnProgreso.php">En Progreso</a>
-                                   <a href="http://localhost/app/ONM/web/area_clientes/Terminados.php">Instrumentos Calibrados</a>
-                                   <a href="http://localhost/app/ONM/web/area_clientes/Entregados.php">Instrumentos Entregados</a>
+                                    <a href="panels-wells.html"> Etc</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html"> Atras</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-			
-			
-                        
+						
                         <li>
-                            <a href="#"><i class="fa  fa-file-text "></i> INFORMES<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Referenciales<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Resumen de Servicios</a>
+                                    <a href="panels-wells.html"> Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Resumen de Terminados</a>
+                                    <a href="buttons.html"> Areas</a>
                                 </li>
-                                 
+                                <li>
+                                    <a href="#" value="Load new document" onclick="pageabmdepen()"> Dependencias</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html"> Otros</a>
+                                </li>
+                                <li>
+                                    <a href="icons.html"> Otros</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html"> Otros</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="#"><i class="fa  fa-bar-chart-o"></i> ESTADISTICAS<span class="fa arrow"></span></a>
+                        <li class="active">
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Informes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="buttons.html">Ranking de trabajo por Mes</a>
+                                    <a class="active" href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        
-                        
-                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+
+    
+<!--
+    <!-- jQuery --
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript --
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript --
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript --
+    <script src="../dist/js/sb-admin-2.js"></script>
+-->
 </body>
 </html>

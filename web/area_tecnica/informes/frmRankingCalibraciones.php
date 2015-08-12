@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["codigo_usuario"])) {
-    header("Location:http://192.168.0.99/web/ONM/web/login_tecnicos/acceso.html");
+    header("Location:http://localhost/app/ONM/web/login_tecnicos/acceso.html");
 }
 $codtecnico=  $_SESSION["codigo_usuario"];
 ?>

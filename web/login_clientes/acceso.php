@@ -27,7 +27,7 @@ $ci=$_REQUEST['ci'];
 	{
 		echo '<script type="text/javascript">
                          alert("Datos erroneos ingresados..!");
-			 window.location="http://192.168.0.99/web/ONM/web/login_clientes/acceso.html";
+			 window.location="http://localhost/app/ONM/web/login_clientes/acceso.html";
                       </script>';
 	}
 	else
@@ -35,7 +35,7 @@ $ci=$_REQUEST['ci'];
             $_SESSION["nombre_usuario"] = $row['cli_nom'];
             $_SESSION["codigo_usuario"] = $row['cli_cod'];
             
-            header("Location:http://192.168.0.99/web/ONM/web/area_clientes/menu_clientes.php");
+            header("Location:http://localhost/app/ONM/web/area_clientes/menu_clientes.php");
 	} 
 	exit;
 ?>

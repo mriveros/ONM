@@ -130,7 +130,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuracion</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="http://192.168.0.99/web/ONM/web/logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
+                        <li><a href="http://localhost/app/ONM/web/logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -149,7 +149,7 @@
                             <a href="#"><i class="fa fa-user"></i> USUARIOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/usuarios/ABMusuario.php">Registros de Usuarios</a>
+                                    <a href="http://localhost/app/ONM/web/usuarios/ABMusuario.php">Registros de Usuarios</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -158,7 +158,7 @@
                             <a href="#"><i class="fa  fa-users"></i> CLIENTES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/clientes/ABMcliente.php"> Registros de Clientes</a>
+                                    <a href="http://localhost/app/ONM/web/clientes/ABMcliente.php"> Registros de Clientes</a>
                                 </li>
                                 <li>
                                 </li>
@@ -169,7 +169,7 @@
                             <a href="#"><i class="fa fa-wrench "></i> INSTRUMENTOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/instrumentos/ABMinstrumento.php"> Registro de Instrumentos</a>
+                                    <a href="http://localhost/app/ONM/web/instrumentos/ABMinstrumento.php"> Registro de Instrumentos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -178,7 +178,7 @@
                             <a href="#"><i class="fa  fa-flask "></i> LABORATORIOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/laboratorios/ABMlaboratorio.php">Registros de Laboratorios</a>
+                                    <a href="http://localhost/app/ONM/web/laboratorios/ABMlaboratorio.php">Registros de Laboratorios</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -187,9 +187,9 @@
                             <a href="#"><i class="fa   fa-mail-forward"></i> INGRESO<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/ingresos/RegIngreso.php">Registrar Ingreso</a>
-                                    <a href="http://192.168.0.99/web/ONM/web/ingresos/ListadoIngresos.php">Listado Ingresos</a>
-                                    <a href="http://192.168.0.99/web/ONM/web/ingresos/AnularDetalle.php">Anular Detalle de Ingreso</a>
+                                    <a href="http://localhost/app/ONM/web/ingresos/RegIngreso.php">Registrar Ingreso</a>
+                                    <a href="http://localhost/app/ONM/web/ingresos/ListadoIngresos.php">Listado Ingresos</a>
+                                    <a href="http://localhost/app/ONM/web/ingresos/AnularDetalle.php">Anular Detalle de Ingreso</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -199,10 +199,10 @@
                             <ul class="nav nav-second-level">
                                
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/entregas/Terminados.php">Intrumentos Terminados</a>
-                                    <a href="http://192.168.0.99/web/ONM/web/entregas/ListadoParcial.php">Realizar Entrega Parcial</a>
-                                    <a href="http://192.168.0.99/web/ONM/web/entregas/ImprimirEntrega.php">Imprimir Entrega</a>
-                                    <a href="http://192.168.0.99/web/ONM/web/entregas/Entregados.php">Intrumentos Entregados</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/Terminados.php">Intrumentos Terminados</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/ListadoParcial.php">Realizar Entrega Parcial</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/ImprimirEntrega.php">Imprimir Entrega</a>
+                                    <a href="http://localhost/app/ONM/web/entregas/Entregados.php">Intrumentos Entregados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -211,13 +211,13 @@
                             <a href="#"><i class="fa  fa-file-text "></i> INFORMES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/informes/frmRegistrosFecha.php">Registros por Fecha</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmRegistrosFecha.php">Registros por Fecha</a>
                                 </li>
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/informes/frmClientesInstrumentosFecha.php">Intrumentos Recibidos por Clientes</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmClientesInstrumentosFecha.php">Intrumentos Recibidos por Clientes</a>
                                 </li>
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/informes/frmRegistrosAnuladosFecha.php">Registros Anulados</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmRegistrosAnuladosFecha.php">Registros Anulados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -226,13 +226,13 @@
                             <a href="#"><i class="fa  fa-bar-chart-o"></i> ESTADISTICAS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/informes/frmRankingInstrumentosClientes.php">Ranking- Instrumentos por Cliente</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmRankingInstrumentosClientes.php">Ranking- Instrumentos por Cliente</a>
                                 </li>
                                 <li>
-                                  <a href="http://192.168.0.99/web/ONM/web/informes/frmRankingLaboratorios.php">Ranking- Instrumentos por Laboratorio</a>
+                                  <a href="http://localhost/app/ONM/web/informes/frmRankingLaboratorios.php">Ranking- Instrumentos por Laboratorio</a>
                                 </li>
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/informes/frmRankingCalibraciones.php">Ranking- Total Calibrados</a>
+                                    <a href="http://localhost/app/ONM/web/informes/frmRankingCalibraciones.php">Ranking- Total Calibrados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -241,7 +241,7 @@
                             <a href="#"><i class="fa  fa-cogs"></i>Tecnicos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/tecnicos/ABMtecnico.php"> Registros de Tecnicos</a>
+                                    <a href="http://localhost/app/ONM/web/tecnicos/ABMtecnico.php"> Registros de Tecnicos</a>
                                 </li>
                                 <li>
                                 </li>
@@ -252,7 +252,7 @@
                             <a href="#"><i class="fa  fa-lightbulb-o"></i>Tecnicos- Laboratorios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/tecnicos_laboratorios/ABMtecniLab.php"> Registros de Tecnicos en Laboratorios</a>
+                                    <a href="http://localhost/app/ONM/web/tecnicos_laboratorios/ABMtecniLab.php"> Registros de Tecnicos en Laboratorios</a>
                                 </li>
                                 <li>
                                 </li>
@@ -263,10 +263,10 @@
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA CLIENTES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                   <a href="http://192.168.0.99/web/ONM/web/login_clientes/acceso.html">Login</a>
-                                   <a href="http://192.168.0.99/web/ONM/web/area_clientes/EnProgreso.php">En Progreso</a>
-                                   <a href="http://192.168.0.99/web/ONM/web/area_clientes/Terminados.php">Instrumentos Calibrados</a>
-                                   <a href="http://192.168.0.99/web/ONM/web/area_clientes/Entregados.php">Instrumentos Entregados</a>
+                                   <a href="http://localhost/app/ONM/web/login_clientes/acceso.html">Login</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/EnProgreso.php">En Progreso</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/Terminados.php">Instrumentos Calibrados</a>
+                                   <a href="http://localhost/app/ONM/web/area_clientes/Entregados.php">Instrumentos Entregados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -275,10 +275,10 @@
                             <a href="#"><i class="fa  fa-arrow-left"></i> AREA TECNICA<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://192.168.0.99/web/ONM/web/login_tecnicos/acceso.html">Login</a>
-                                    <a href="http://192.168.0.99/web/ONM/web/area_tecnica/TrabajosRecibidos.php">Trabajos Recibidos</a>
-                                    <a href="http://192.168.0.99/web/ONM/web/area_tecnica/EnProgreso.php">Trabajos En Progreso</a>
-                                    <a href="http://192.168.0.99/web/ONM/web/area_tecnica/Terminados.php">Trabajos Terminados</a>
+                                    <a href="http://localhost/app/ONM/web/login_tecnicos/acceso.html">Login</a>
+                                    <a href="http://localhost/app/ONM/web/area_tecnica/TrabajosRecibidos.php">Trabajos Recibidos</a>
+                                    <a href="http://localhost/app/ONM/web/area_tecnica/EnProgreso.php">Trabajos En Progreso</a>
+                                    <a href="http://localhost/app/ONM/web/area_tecnica/Terminados.php">Trabajos Terminados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

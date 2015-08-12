@@ -36,7 +36,7 @@
             if(func_existeDato($nombreA, 'clientes', 'cli_nom')==true){
                 echo '<script type="text/javascript">
 		alert("El Cliente ya existe. Intente ingresar otro Cliente");
-                window.location="http://192.168.0.99/web/ONM/web/clientes/ABMcliente.php";
+                window.location="http://localhost/app/ONM/web/clientes/ABMcliente.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -45,7 +45,7 @@
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://192.168.0.99/web/ONM/web/clientes/ABMcliente.php");
+                header("Refresh:0; url=http://localhost/app/ONM/web/clientes/ABMcliente.php");
                 }
             }
         //si es Modificar    
@@ -53,10 +53,10 @@
             
             pg_query("update clientes set cli_nom='$nombreM',cli_ape= '$apellidoM',cli_ruc='$rucM',cli_mail='$mailM',cli_nro='$nroM',estado='$estadoM',cli_contacto='$contactoM' WHERE cli_cod=$codigoModif");
             $query = '';
-            header("Refresh:0; url=http://192.168.0.99/web/ONM/web/clientes/ABMcliente.php");
+            header("Refresh:0; url=http://localhost/app/ONM/web/clientes/ABMcliente.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update clientes set estado='f' WHERE cli_cod=$codigoElim");
-            header("Refresh:0; url=http://192.168.0.99/web/ONM/web/clientes/ABMcliente.php");
+            header("Refresh:0; url=http://localhost/app/ONM/web/clientes/ABMcliente.php");
 	}

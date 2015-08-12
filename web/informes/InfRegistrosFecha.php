@@ -88,7 +88,7 @@ $i=0;
 $pdf->SetFont('Arial','',10);
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
- $conectate=pg_connect("host=192.168.0.99  port=5432 dbname=onmworkflow user=postgres password=postgres"
+ $conectate=pg_connect("host=localhost  port=5434 dbname=onmworkflow user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 $consulta=pg_exec($conectate,"select ing.ing_proforma, cli.cli_nom || ' '||cli.cli_ape as cliente,ing.ing_obs,to_char(ing.fecha_recepcion,'DD/MM/YYYY') as fecha_recepcion,
 to_char(ing.fecha_entrega,'DD/MM/YYYY') as fecha_entrega,ing.situacion
