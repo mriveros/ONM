@@ -33,7 +33,7 @@
     
         //Si es agregar
         if(isset($_POST['agregar'])){
-            if(func_existeDato($rucA, 'clientes', 'cli_ruc')==true){
+            if(func_existeDato($nombreA, 'clientes', 'cli_nom')==true){
                 echo '<script type="text/javascript">
 		alert("El Cliente ya existe. Intente ingresar otro Cliente");
                 window.location="http://192.168.0.99/web/ONM/web/clientes/ABMcliente.php";
